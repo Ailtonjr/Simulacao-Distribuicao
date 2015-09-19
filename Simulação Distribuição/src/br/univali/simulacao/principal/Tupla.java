@@ -1,9 +1,6 @@
-package br.univali.simulacao;
+package br.univali.simulacao.principal;
 
-/**
- *
- * @author 5108250
- */
+
 public class Tupla {
     private int id;
     private double tec;
