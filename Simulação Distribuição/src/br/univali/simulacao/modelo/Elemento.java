@@ -6,6 +6,11 @@ public class Elemento {
     private double valor = 0;
     private double percentual = 0;
 
+    public Elemento(double valor, double percentual) {
+        this.valor = valor;
+        this.percentual = percentual;
+    }
+
     public double getValor() {
         return valor;
     }

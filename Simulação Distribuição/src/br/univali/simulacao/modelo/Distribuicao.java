@@ -11,7 +11,7 @@ public class Distribuicao {
     
     public double geraValor() {
         Random rand = new Random();
-        return rand.nextDouble();
+        return rand.nextDouble() * 100;     //nextDouble gera valores entre 0.0 e 1.0
     }
     
     public double comparaPercentagem(List<Elemento> lista) {
