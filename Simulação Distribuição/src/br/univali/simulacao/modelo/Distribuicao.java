@@ -4,11 +4,18 @@ package br.univali.simulacao.modelo;
 import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Distribuicao {
     
-    public void distribuicaoNormal(double m, double o) {
+    public double geraValor() {
+        Random rand = new Random();
+        return rand.nextDouble();
+    }
+    
+    public double distribuicaoNormal(double m, double o) {
+        double retorno = 0;
         int tamanho = (int) o*2 + 1;
         List<Elemento> lista = new ArrayList();
         double x = m - o;
@@ -24,12 +31,13 @@ public class Distribuicao {
         }
         
         // Comparação de percentagem
-        double n = 61.7;    // Randomico
+        double n = geraValor();    // Randomico
         double aux = lista.get(0).getPercentual();
         
         for (Elemento elemento : lista) {
             if (n <= aux) {
                 System.out.println(elemento.getValor());
+                retorno = elemento.getValor();
                 break;
             }
             aux += elemento.getPercentual();
@@ -38,38 +46,12 @@ public class Distribuicao {
         for (Elemento vetor1 : lista) {
             System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
         }
+        
+        return retorno;
     }
     
     public void distribuicaoUniforme(double a, double b) {
-        int tamanho = (int) b*2 + 1;
-        List<Elemento> lista = new ArrayList();
-        double x = a - b;
-        
-        for (int i = 0;i < tamanho; i++) {
-            lista.add(new Elemento());
-        }
-        
-        for (Elemento l : lista) {
-            l.setValor(x);
-            l.setPercentual(1/(b-a) * 100 * (-1));  // se tirar o -1 da formula fica negativo
-            x++;
-        }
-        
-        // Comparação de percentagem
-        double n = 61.7;    // Randomico
-        double aux = lista.get(0).getPercentual();
-        
-        for (Elemento elemento : lista) {
-            if (n <= aux) {
-                System.out.println(elemento.getValor());
-                break;
-            }
-            aux += elemento.getPercentual();
-        }
-        
-        for (Elemento vetor1 : lista) {
-            System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
-        }
+        // TODO
     }
     
     
