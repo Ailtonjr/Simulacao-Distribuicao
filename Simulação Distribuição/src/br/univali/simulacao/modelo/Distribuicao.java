@@ -14,6 +14,21 @@ public class Distribuicao {
         return rand.nextDouble();
     }
     
+    public double comparaPercentagem(List<Elemento> lista) {
+        double n = geraValor();    // Randomico
+        double aux = lista.get(0).getPercentual();
+        
+        for (Elemento elemento : lista) {
+            if (n <= aux) {
+                System.out.println(elemento.getValor());
+                return elemento.getValor();
+            }
+            aux += elemento.getPercentual();
+        }
+        
+        return 0;
+    }
+    
     public double distribuicaoNormal(double m, double o) {
         double retorno = 0;
         int tamanho = (int) o*2 + 1;
@@ -31,17 +46,7 @@ public class Distribuicao {
         }
         
         // Comparação de percentagem
-        double n = geraValor();    // Randomico
-        double aux = lista.get(0).getPercentual();
-        
-        for (Elemento elemento : lista) {
-            if (n <= aux) {
-                System.out.println(elemento.getValor());
-                retorno = elemento.getValor();
-                break;
-            }
-            aux += elemento.getPercentual();
-        }
+        retorno = comparaPercentagem(lista);
         
         for (Elemento vetor1 : lista) {
             System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
