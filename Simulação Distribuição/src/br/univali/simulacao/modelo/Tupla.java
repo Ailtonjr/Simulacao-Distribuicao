@@ -1,4 +1,4 @@
-package br.univali.simulacao.principal;
+package br.univali.simulacao.modelo;
 
 
 public class Tupla {
