@@ -47,8 +47,8 @@ public class Distribuicao {
         // Comparação de percentagem
         retorno = comparaPercentagem(lista);
         
-        for (Elemento vetor1 : lista) {
-            System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
+        for (Elemento elemento : lista) {
+            System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
         }
         System.out.println("\n");
         
@@ -69,8 +69,8 @@ public class Distribuicao {
         
         retorno = comparaPercentagem(lista);
         
-        for (Elemento vetor1 : lista) {
-            System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
+        for (Elemento elemento : lista) {
+            System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
         }
         System.out.println("\n");
         
@@ -96,8 +96,30 @@ public class Distribuicao {
         
         retorno = comparaPercentagem(lista);
         
-        for (Elemento vetor1 : lista) {
-            System.out.println(vetor1.getValor() + "\t" + vetor1.getPercentual());
+        for (Elemento elemento : lista) {
+            System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
+        }
+        System.out.println("\n");
+        
+        return retorno;
+    }
+    
+    public double distribuicaoExponencial(double lambda, double limite) {
+        // lambda deve ser maior que zero
+        double retorno = 0;
+        List<Elemento> lista = new ArrayList();
+        double x = lambda;
+        
+        System.out.println("lambda = " + lambda + "\tlimite = " + limite);
+        
+        for (int i = 0; i < limite; i++) {
+            lista.add(new Elemento(lambda + i, pow(lambda*Math.E, (lambda*x))*(-1) ));
+        }
+        
+        retorno = comparaPercentagem(lista);
+        
+        for (Elemento elemento : lista) {
+            System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
         }
         System.out.println("\n");
         

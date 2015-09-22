@@ -270,7 +270,7 @@ public class Tela extends javax.swing.JFrame {
         for (JPanel panel : lista) {
             panel.setBackground(Color.red);
         }
-        new Distribuicao().distribuicaoNormal(5, 2);
+        new Distribuicao().distribuicaoExponencial(5, 10);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
