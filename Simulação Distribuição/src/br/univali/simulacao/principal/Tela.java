@@ -5,13 +5,11 @@
  */
 package br.univali.simulacao.principal;
 
-import br.univali.simulacao.modelo.Distribuicao;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,6 +33,11 @@ public class Tela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        meupainel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jSpinner2 = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
         comboBox_TEC = new javax.swing.JComboBox();
         label_TEC = new javax.swing.JLabel();
         label_TS = new javax.swing.JLabel();
@@ -43,7 +46,7 @@ public class Tela extends javax.swing.JFrame {
         label_TempoSistema = new javax.swing.JLabel();
         comboBox_TempoRelatorio = new javax.swing.JComboBox();
         label_TempoRelatorio = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        button_simulação = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -58,6 +61,39 @@ public class Tela extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        label_TempoSimulacao = new javax.swing.JLabel();
+        spinner_tempoSimulacao = new javax.swing.JSpinner();
+
+        jLabel4.setText("μ:");
+
+        jLabel6.setText("μ:");
+
+        javax.swing.GroupLayout meupainelLayout = new javax.swing.GroupLayout(meupainel);
+        meupainel.setLayout(meupainelLayout);
+        meupainelLayout.setHorizontalGroup(
+            meupainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(meupainelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        meupainelLayout.setVerticalGroup(
+            meupainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, meupainelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(meupainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulação");
@@ -65,11 +101,14 @@ public class Tela extends javax.swing.JFrame {
 
         comboBox_TEC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
 
+        comboBox_TEC.setSelectedItem(null);
+
         label_TEC.setText("Distribuição TEC");
 
         label_TS.setText("Distribuição TS");
 
         comboBox_TS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
+        comboBox_TS.setSelectedItem(null);
 
         comboBox_TempoSistema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Segundo", "Minisegundo", "Microsegundo", "Nanosegundo" }));
 
@@ -79,10 +118,10 @@ public class Tela extends javax.swing.JFrame {
 
         label_TempoRelatorio.setText("Unidade de Tempo do Relatório");
 
-        jButton1.setText("Iniciar Simulação");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_simulação.setText("Iniciar Simulação");
+        button_simulação.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_simulaçãoActionPerformed(evt);
             }
         });
 
@@ -206,34 +245,44 @@ public class Tela extends javax.swing.JFrame {
 
         jLabel3.setText("Processamento");
         jDesktopPane1.add(jLabel3);
-        jLabel3.setBounds(170, 30, 80, 20);
+        jLabel3.setBounds(160, 30, 110, 20);
+
+        label_TempoSimulacao.setText("Tempo da simulação");
+
+        spinner_tempoSimulacao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(label_TempoSimulacao)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jDesktopPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(label_TEC)
-                                    .addComponent(label_TempoSistema)
-                                    .addComponent(comboBox_TempoSistema, 0, 150, Short.MAX_VALUE)
-                                    .addComponent(comboBox_TEC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(label_TEC, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_TempoSistema, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboBox_TempoSistema, javax.swing.GroupLayout.Alignment.LEADING, 0, 150, Short.MAX_VALUE)
+                                    .addComponent(comboBox_TEC, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(label_TS)
                                     .addComponent(label_TempoRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(comboBox_TS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboBox_TempoRelatorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(30, 30, 30))
+                                    .addComponent(comboBox_TempoRelatorio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(spinner_tempoSimulacao)
+                                .addGap(264, 264, 264))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(button_simulação)))
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,8 +305,12 @@ public class Tela extends javax.swing.JFrame {
                         .addComponent(label_TempoRelatorio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBox_TempoRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addGap(11, 11, 11)
+                .addComponent(label_TempoSimulacao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(spinner_tempoSimulacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(button_simulação)
                 .addGap(18, 18, 18)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -267,23 +320,32 @@ public class Tela extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        List<JPanel> lista = new ArrayList<>();
-        lista.add(jPanel4);
-        lista.add(jPanel5);
-        lista.add(jPanel6);
-        lista.add(jPanel7);
-        
-        for (JPanel panel : lista) {
-            panel.setBackground(Color.red);
-        }
-        new Distribuicao().distribuicaoNormal(5, 2);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void button_simulaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_simulaçãoActionPerformed
+        verificaOpcoesEscolhidas();
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+        JTextField xField = new JTextField(5);
+        JTextField yField = new JTextField(5);
+
+        JPanel myPanel = new JPanel();
+        myPanel.add(new JLabel("μ:"));
+        myPanel.add(xField);
+        myPanel.add(Box.createHorizontalStrut(15));
+        myPanel.add(new JLabel("σ:"));
+        myPanel.add(yField);
+
+        int result = JOptionPane.showConfirmDialog(null, meupainel,
+                "Parametros para Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            System.out.println("x value: " + (double) jSpinner1.getValue());
+            System.out.println("y value: " + (double) jSpinner2.getValue());
+        }
+    
+    }//GEN-LAST:event_button_simulaçãoActionPerformed
+
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Tela().setVisible(true);
@@ -292,15 +354,17 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_simulação;
     private javax.swing.JComboBox comboBox_TEC;
     private javax.swing.JComboBox comboBox_TS;
     private javax.swing.JComboBox comboBox_TempoRelatorio;
     private javax.swing.JComboBox comboBox_TempoSistema;
-    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -311,9 +375,61 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JLabel label_TEC;
     private javax.swing.JLabel label_TS;
     private javax.swing.JLabel label_TempoRelatorio;
+    private javax.swing.JLabel label_TempoSimulacao;
     private javax.swing.JLabel label_TempoSistema;
+    private javax.swing.JPanel meupainel;
+    private javax.swing.JSpinner spinner_tempoSimulacao;
     // End of variables declaration//GEN-END:variables
+
+    private void verificaOpcoesEscolhidas() {
+        String tec = comboBox_TEC.getSelectedItem().toString();
+        String ts = comboBox_TS.getSelectedItem().toString();
+
+        if (tec.equalsIgnoreCase("Normal")) {
+            if (ts.equalsIgnoreCase("Normal")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Exponencial")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Uniforme")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Triangular")) {
+                System.out.println(tec + " " + ts);
+            }
+        } else if (tec.equalsIgnoreCase("Exponencial")) {
+            if (ts.equalsIgnoreCase("Normal")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Exponencial")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Uniforme")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Triangular")) {
+                System.out.println(tec + " " + ts);
+            }
+        } else if (tec.equalsIgnoreCase("Uniforme")) {
+            if (ts.equalsIgnoreCase("Normal")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Exponencial")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Uniforme")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Triangular")) {
+                System.out.println(tec + " " + ts);
+            }
+        } else if (tec.equalsIgnoreCase("Triangular")) {
+            if (ts.equalsIgnoreCase("Normal")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Exponencial")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Uniforme")) {
+                System.out.println(tec + " " + ts);
+            } else if (ts.equalsIgnoreCase("Triangular")) {
+                System.out.println(tec + " " + ts);
+            }
+        }
+    }
 }
