@@ -82,15 +82,15 @@ public class Distribuicao {
         double retorno = 0;
         int tamanho = (int) (b - a);
         List<Elemento> lista = new ArrayList();
-        double x = b - tamanho;
+        double x = b - tamanho + 1;
         
         System.out.println("a = " + a + "\tb = " + b + "\tc = " + c);   // LOG
         
-        for (int i = 0; i < tamanho; i++) {
-            if (a <= x && x < c)        lista.add(new Elemento(x + i, (2*(x-a))/((b-a)*(c-a)) *100));
-            else if (x == c)            lista.add(new Elemento(x + i, 2/(b-a) *100));
-            else if (c < x && x <= b)   lista.add(new Elemento(x + i, (2*(b-x))/((b-a)*(b-c)) *100));
-            else                        lista.add(new Elemento(x + i, 0));
+        for (int i = 1; i < tamanho; i++) {     // [a,b] sao intervalos fechados
+            if (a <= x && x < c)        lista.add(new Elemento(x, (2*(x-a))/((b-a)*(c-a)) *100));
+            else if (x == c)            lista.add(new Elemento(x, 2/(b-a) *100));
+            else if (c < x && x <= b)   lista.add(new Elemento(x, (2*(b-x))/((b-a)*(b-c)) *100));
+            else                        lista.add(new Elemento(x, 0));
             x++;
         }
         
