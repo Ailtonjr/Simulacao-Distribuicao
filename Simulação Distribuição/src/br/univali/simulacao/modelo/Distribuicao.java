@@ -56,7 +56,7 @@ public class Distribuicao {
         int tamanho = (int) (b - a);
         List<Elemento> lista = new ArrayList();
         
-        for (int i = 0; i <= b; i++) {
+        for (int i = 0; i < tamanho; i++) {
             lista.add(new Elemento(i + a, 1/(b-a)));    // lista.valor não pode ser incrementado de 1 em 1. Cenario teste a=2.2 b= 3.3
         }
         
