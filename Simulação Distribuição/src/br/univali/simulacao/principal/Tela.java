@@ -85,6 +85,10 @@ public class Tela extends javax.swing.JFrame {
 
         spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
+        spinner_media.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_desvioPadrao.setText("σ:");
 
         javax.swing.GroupLayout panel_normalLayout = new javax.swing.GroupLayout(panel_normal);
@@ -115,6 +119,10 @@ public class Tela extends javax.swing.JFrame {
         );
 
         label_uniformeA.setText("a:");
+
+        spinner_uniformeA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_uniformeB.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         spinner_uniformeA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
@@ -199,6 +207,10 @@ public class Tela extends javax.swing.JFrame {
         );
 
         label_exponencialLambda.setText("λ:");
+
+        spinner_exponencialLambda.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_exponencialLimite.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         spinner_exponencialLambda.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
