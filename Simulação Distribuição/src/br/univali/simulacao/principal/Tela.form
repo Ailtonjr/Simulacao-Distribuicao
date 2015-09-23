@@ -421,7 +421,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="Segundo"/>
-            <StringItem index="1" value="Minisegundo"/>
+            <StringItem index="1" value="Milisegundo"/>
             <StringItem index="2" value="Microsegundo"/>
             <StringItem index="3" value="Nanosegundo"/>
           </StringArray>
@@ -438,7 +438,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
             <StringItem index="0" value="Segundo"/>
-            <StringItem index="1" value="Minisegundo"/>
+            <StringItem index="1" value="Milisegundo"/>
             <StringItem index="2" value="Microsegundo"/>
             <StringItem index="3" value="Nanosegundo"/>
           </StringArray>

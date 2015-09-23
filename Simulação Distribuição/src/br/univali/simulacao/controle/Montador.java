@@ -26,17 +26,19 @@ public class Montador {
     //int[] testeTEC = new int[]{0, 7, 8, 3, 5, 9};
     //int[] testeTS = new int[]{5, 5, 10, 15, 25, 40};
 
-    public Montador(String strTec, String strTs, float normalMedia, float normalDesvioPadrao, float uniformeA, float uniformeB, float tempoSimulacao) {
+    public Montador(String strTec, String strTs, float limiteInferiorTec, float limiteSuperiorTec, float limiteInferiorTs, float limiteSuperiorTs, float tempoSimulacao) {
         System.out.println(strTec + " " + strTs);
         distribuicao = new Distribuicao();
 
         while (true) {
             if (strTec.equals("Normal")) {
-                tec = distribuicao.distribuicaoNormal(normalMedia, normalDesvioPadrao);
+                tec = distribuicao.distribuicaoNormal(limiteInferiorTec, limiteSuperiorTec);
             }
 
             if (strTs.equals("Uniforme")) {
-                ts = distribuicao.distribuicaoUniforme(uniformeA, uniformeB);
+                ts = distribuicao.distribuicaoUniforme(limiteInferiorTs, limiteSuperiorTs);
+            }else if(strTs.equals("Normal")){
+                
             }
 
             if (id == 0) {
@@ -69,10 +71,7 @@ public class Montador {
                 System.out.println(tupla.getId() + "\t *\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t" + tupla.getT_fila());
             } else {
                 System.out.println(tupla.getId() + "\t" + tupla.getTec() + "\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t" + tupla.getT_fila());
-
             }
-
         }
-
     }
 }
