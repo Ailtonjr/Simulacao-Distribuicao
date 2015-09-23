@@ -2,20 +2,20 @@
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JPanel" name="meupainel">
+    <Container class="javax.swing.JPanel" name="panel_normal">
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="label_media" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSpinner1" min="-2" pref="68" max="-2" attributes="0"/>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <Component id="spinner_media" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <Component id="label_desvioPadrao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jSpinner2" min="-2" pref="68" max="-2" attributes="0"/>
+                  <Component id="spinner_desvioPadrao" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -25,10 +25,10 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_media" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_media" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_desvioPadrao" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_desvioPadrao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -36,18 +36,185 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="label_media">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x3bc;:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="spinner_media">
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner2">
+        <Component class="javax.swing.JSpinner" name="spinner_desvioPadrao">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
+        <Component class="javax.swing.JLabel" name="label_desvioPadrao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x3bc;:"/>
+            <Property name="text" type="java.lang.String" value="&#x3c3;:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panel_uniforme">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_uniformeA" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_uniformeA" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <Component id="label_uniformeB" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_uniformeB" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="label_uniformeA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_uniformeA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_uniformeB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_uniformeB" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="label_uniformeA">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="a:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_uniformeA">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_uniformeB">
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_uniformeB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="b:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panel_triangular">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_tringularA" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_triangularA" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_tringularB" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_triangularB" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_tringularC" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_triangularC" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="label_tringularA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_triangularA" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="label_tringularB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spinner_triangularB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                              <Component id="label_tringularC" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="spinner_triangularC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="label_tringularA">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="A:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_triangularA">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_triangularB">
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_tringularB">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="B:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_triangularC">
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_tringularC">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="C:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="panel_exponencial">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_exponencialLambda" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_exponencialLambda" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="label_limite" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="spinner_exponencialLimite" min="-2" pref="68" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="label_exponencialLambda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_exponencialLambda" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_limite" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinner_exponencialLimite" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="label_exponencialLambda">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x3bb;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_exponencialLambda">
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spinner_exponencialLimite">
+        </Component>
+        <Component class="javax.swing.JLabel" name="label_limite">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limite:"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -81,25 +248,25 @@
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="label_TempoSimulacao" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_tempoSimulacao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jDesktopPane1" max="32767" attributes="0"/>
+                          <Component id="desktopPane_simulacao" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="label_TEC" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label_TempoSistema" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="comboBox_TempoSistema" alignment="0" pref="150" max="32767" attributes="0"/>
+                                  <Component id="label_tempoSistema" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="comboBox_tempoSistema" alignment="0" max="32767" attributes="0"/>
                                   <Component id="comboBox_TEC" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace pref="62" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="label_TS" min="-2" max="-2" attributes="0"/>
-                                  <Component id="label_TempoRelatorio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="label_tempoRelatorio" alignment="0" max="32767" attributes="0"/>
                                   <Component id="comboBox_TS" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboBox_TempoRelatorio" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="comboBox_tempoRelatorio" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -133,24 +300,24 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="label_TempoSistema" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_tempoSistema" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboBox_TempoSistema" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBox_tempoSistema" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="label_TempoRelatorio" min="-2" max="-2" attributes="0"/>
+                      <Component id="label_tempoRelatorio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboBox_TempoRelatorio" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboBox_tempoRelatorio" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Component id="label_TempoSimulacao" min="-2" max="-2" attributes="0"/>
+              <Component id="label_tempoSimulacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="spinner_tempoSimulacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="button_simulação" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jDesktopPane1" min="-2" pref="258" max="-2" attributes="0"/>
+              <Component id="desktopPane_simulacao" min="-2" pref="258" max="-2" attributes="0"/>
               <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -168,6 +335,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBox_TECActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xd;&#xa;comboBox_TEC.setSelectedItem(null);&#xd;&#xa;"/>
       </AuxValues>
@@ -197,7 +367,7 @@
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboBox_TS.setSelectedItem(null);  "/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboBox_TempoSistema">
+    <Component class="javax.swing.JComboBox" name="comboBox_tempoSistema">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -209,12 +379,12 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="label_TempoSistema">
+    <Component class="javax.swing.JLabel" name="label_tempoSistema">
       <Properties>
         <Property name="text" type="java.lang.String" value="Unidade de Tempo do Sistema"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboBox_TempoRelatorio">
+    <Component class="javax.swing.JComboBox" name="comboBox_tempoRelatorio">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -226,7 +396,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="label_TempoRelatorio">
+    <Component class="javax.swing.JLabel" name="label_tempoRelatorio">
       <Properties>
         <Property name="text" type="java.lang.String" value="Unidade de Tempo do Relat&#xf3;rio"/>
       </Properties>
@@ -239,7 +409,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_simula&#xe7;&#xe3;oActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JDesktopPane" name="jDesktopPane1">
+    <Container class="javax.swing.JDesktopPane" name="desktopPane_simulacao">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -466,7 +636,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="label_TempoSimulacao">
+    <Component class="javax.swing.JLabel" name="label_tempoSimulacao">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tempo da simula&#xe7;&#xe3;o"/>
       </Properties>
