@@ -5,10 +5,7 @@ import br.univali.simulacao.modelo.Tupla;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Ailton Jr
- */
+
 public class Montador {
 
     List<Tupla> tuplas = new ArrayList<>();
