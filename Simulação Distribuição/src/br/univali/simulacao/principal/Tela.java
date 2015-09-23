@@ -5,6 +5,7 @@
  */
 package br.univali.simulacao.principal;
 
+import br.univali.simulacao.controle.Montador;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class Tela extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tela
-     */
+
+    Montador montador;
+    
     public Tela() {
         initComponents();
     }
@@ -79,6 +80,10 @@ public class Tela extends javax.swing.JFrame {
 
         label_media.setText("μ:");
 
+        spinner_media.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_desvioPadrao.setText("σ:");
 
         javax.swing.GroupLayout panel_normalLayout = new javax.swing.GroupLayout(panel_normal);
@@ -109,6 +114,10 @@ public class Tela extends javax.swing.JFrame {
         );
 
         label_uniformeA.setText("a:");
+
+        spinner_uniformeA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_uniformeB.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         label_uniformeB.setText("b:");
 
@@ -141,7 +150,13 @@ public class Tela extends javax.swing.JFrame {
 
         label_tringularA.setText("A:");
 
+        spinner_triangularA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_triangularB.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_tringularB.setText("B:");
+
+        spinner_triangularC.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         label_tringularC.setText("C:");
 
@@ -182,6 +197,10 @@ public class Tela extends javax.swing.JFrame {
 
         label_exponencialLambda.setText("λ:");
 
+        spinner_exponencialLambda.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_exponencialLimite.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_limite.setText("Limite:");
 
         javax.swing.GroupLayout panel_exponencialLayout = new javax.swing.GroupLayout(panel_exponencial);
@@ -216,8 +235,6 @@ public class Tela extends javax.swing.JFrame {
         setResizable(false);
 
         comboBox_TEC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
-
-        comboBox_TEC.setSelectedItem(null);
         comboBox_TEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBox_TECActionPerformed(evt);
@@ -229,7 +246,6 @@ public class Tela extends javax.swing.JFrame {
         label_TS.setText("Distribuição TS");
 
         comboBox_TS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
-        comboBox_TS.setSelectedItem(null);
 
         comboBox_tempoSistema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Segundo", "Minisegundo", "Microsegundo", "Nanosegundo" }));
 
@@ -572,35 +588,56 @@ public class Tela extends javax.swing.JFrame {
     }
 
     private void normalNormal(String coluna1, String coluna2) {
+        float normalMedia1 = 0, normalDesvioPadrao1 = 0, 
+                normalMedia2 = 0, normalDesvioPadrao2 = 0;
         
         int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia1 = (float) spinner_media.getValue();
+            normalDesvioPadrao1 = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia1);
+            System.out.println("σ: " + normalDesvioPadrao1);
         }
         int resultExponencial = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna2 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia2 = (float) spinner_media.getValue();
+            normalDesvioPadrao2 = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia2);
+            System.out.println("σ: " + normalDesvioPadrao2);
         }
+        
+        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia1, normalDesvioPadrao1, normalMedia2, normalDesvioPadrao2, (float) spinner_tempoSimulacao.getValue());
     }
     
     private void normalUniforme(String coluna1, String coluna2) {
+        float normalMedia = 0, normalDesvioPadrao = 0,
+                uniformeA = 0, uniformeB = 0;
         
         int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia = (float) spinner_media.getValue();
+            normalDesvioPadrao = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia);
+            System.out.println("σ: " + normalDesvioPadrao);
         }
         int resultExponencial = JOptionPane.showConfirmDialog(null, panel_uniforme,
                 coluna2 + " - Distribuição Exponencial", JOptionPane.OK_CANCEL_OPTION);
         if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("a: " + spinner_uniformeA.getValue());
-            System.out.println("b: " + spinner_uniformeB.getValue());
+            uniformeA = (float) spinner_uniformeA.getValue();
+            uniformeB = (float) spinner_uniformeB.getValue();
+            
+            System.out.println("a: " + uniformeA);
+            System.out.println("b: " + uniformeB);
         }
+        
+        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia, normalDesvioPadrao, uniformeA, uniformeB, (float) spinner_tempoSimulacao.getValue());
+        montador.exibeTabela();
     }
     
     private void normalTriangular(String coluna1, String coluna2) {

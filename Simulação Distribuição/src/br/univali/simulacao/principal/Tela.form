@@ -42,8 +42,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_media">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_desvioPadrao">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_desvioPadrao">
           <Properties>
@@ -92,8 +102,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_uniformeA">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_uniformeB">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_uniformeB">
           <Properties>
@@ -152,8 +172,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_triangularA">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_triangularB">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_tringularB">
           <Properties>
@@ -161,6 +191,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_triangularC">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_tringularC">
           <Properties>
@@ -209,8 +244,18 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_exponencialLambda">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_exponencialLimite">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+            </Property>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="label_limite">
           <Properties>
@@ -338,9 +383,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBox_TECActionPerformed"/>
       </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="&#xd;&#xa;comboBox_TEC.setSelectedItem(null);&#xd;&#xa;"/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="label_TEC">
       <Properties>
@@ -363,9 +405,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboBox_TS.setSelectedItem(null);  "/>
-      </AuxValues>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboBox_tempoSistema">
       <Properties>
