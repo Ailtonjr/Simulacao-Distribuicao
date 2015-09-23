@@ -5,6 +5,7 @@
  */
 package br.univali.simulacao.principal;
 
+import br.univali.simulacao.controle.Montador;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,9 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class Tela extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Tela
-     */
+
+    Montador montador;
+    
     public Tela() {
         initComponents();
     }
@@ -76,8 +77,13 @@ public class Tela extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         label_tempoSimulacao = new javax.swing.JLabel();
         spinner_tempoSimulacao = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
 
         label_media.setText("μ:");
+
+        spinner_media.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         label_desvioPadrao.setText("σ:");
 
@@ -110,6 +116,10 @@ public class Tela extends javax.swing.JFrame {
 
         label_uniformeA.setText("a:");
 
+        spinner_uniformeA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_uniformeB.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_uniformeB.setText("b:");
 
         javax.swing.GroupLayout panel_uniformeLayout = new javax.swing.GroupLayout(panel_uniforme);
@@ -141,7 +151,13 @@ public class Tela extends javax.swing.JFrame {
 
         label_tringularA.setText("A:");
 
+        spinner_triangularA.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_triangularB.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
         label_tringularB.setText("B:");
+
+        spinner_triangularC.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         label_tringularC.setText("C:");
 
@@ -168,19 +184,25 @@ public class Tela extends javax.swing.JFrame {
             panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_triangularLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_tringularA)
-                    .addComponent(spinner_triangularA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(label_tringularB)
-                        .addComponent(spinner_triangularB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(label_tringularC)
-                            .addComponent(spinner_triangularC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(spinner_triangularC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(label_tringularB)
+                            .addComponent(spinner_triangularB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panel_triangularLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(label_tringularA)
+                        .addComponent(spinner_triangularA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         label_exponencialLambda.setText("λ:");
+
+        spinner_exponencialLambda.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+
+        spinner_exponencialLimite.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
         label_limite.setText("Limite:");
 
@@ -216,8 +238,6 @@ public class Tela extends javax.swing.JFrame {
         setResizable(false);
 
         comboBox_TEC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
-
-        comboBox_TEC.setSelectedItem(null);
         comboBox_TEC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBox_TECActionPerformed(evt);
@@ -229,7 +249,6 @@ public class Tela extends javax.swing.JFrame {
         label_TS.setText("Distribuição TS");
 
         comboBox_TS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Exponencial", "Uniforme", "Triangular" }));
-        comboBox_TS.setSelectedItem(null);
 
         comboBox_tempoSistema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Segundo", "Minisegundo", "Microsegundo", "Nanosegundo" }));
 
@@ -372,6 +391,8 @@ public class Tela extends javax.swing.JFrame {
 
         spinner_tempoSimulacao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
 
+        jLabel4.setText("Simulação");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -379,6 +400,9 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(label_tempoSimulacao)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -432,9 +456,11 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(spinner_tempoSimulacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(button_simulação)
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(desktopPane_simulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -470,6 +496,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -572,35 +599,56 @@ public class Tela extends javax.swing.JFrame {
     }
 
     private void normalNormal(String coluna1, String coluna2) {
+        float normalMedia1 = 0, normalDesvioPadrao1 = 0, 
+                normalMedia2 = 0, normalDesvioPadrao2 = 0;
         
         int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia1 = (float) spinner_media.getValue();
+            normalDesvioPadrao1 = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia1);
+            System.out.println("σ: " + normalDesvioPadrao1);
         }
         int resultExponencial = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna2 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia2 = (float) spinner_media.getValue();
+            normalDesvioPadrao2 = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia2);
+            System.out.println("σ: " + normalDesvioPadrao2);
         }
+        
+        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia1, normalDesvioPadrao1, normalMedia2, normalDesvioPadrao2, (float) spinner_tempoSimulacao.getValue());
     }
     
     private void normalUniforme(String coluna1, String coluna2) {
+        float normalMedia = 0, normalDesvioPadrao = 0,
+                uniformeA = 0, uniformeB = 0;
         
         int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
                 coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
         if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
+            normalMedia = (float) spinner_media.getValue();
+            normalDesvioPadrao = (float) spinner_desvioPadrao.getValue();
+            
+            System.out.println("\nμ: " + normalMedia);
+            System.out.println("σ: " + normalDesvioPadrao);
         }
         int resultExponencial = JOptionPane.showConfirmDialog(null, panel_uniforme,
-                coluna2 + " - Distribuição Exponencial", JOptionPane.OK_CANCEL_OPTION);
+                coluna2 + " - Distribuição Uniforme", JOptionPane.OK_CANCEL_OPTION);
         if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("a: " + spinner_uniformeA.getValue());
-            System.out.println("b: " + spinner_uniformeB.getValue());
+            uniformeA = (float) spinner_uniformeA.getValue();
+            uniformeB = (float) spinner_uniformeB.getValue();
+            
+            System.out.println("a: " + uniformeA);
+            System.out.println("b: " + uniformeB);
         }
+        
+        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia, normalDesvioPadrao, uniformeA, uniformeB, (float) spinner_tempoSimulacao.getValue());
+        montador.exibeTabela();
     }
     
     private void normalTriangular(String coluna1, String coluna2) {

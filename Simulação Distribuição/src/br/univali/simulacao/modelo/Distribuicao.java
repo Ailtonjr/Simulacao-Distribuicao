@@ -28,7 +28,8 @@ public class Distribuicao {
             }
             aux += elemento.getPercentual();
         }
-        return 0;
+        System.err.println("Deu 0 e Chamou de novo");
+        return comparaPercentagem(lista);                                           //Teste para nao retornar 0 quando o rand der um valor fora dos intervalos
     }
     
     public double distribuicaoNormal(double m, double o) {

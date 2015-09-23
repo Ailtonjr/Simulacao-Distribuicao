@@ -10,6 +10,26 @@ public class Tupla {
     private double ts_fim;
     private double t_fila;
 
+    public Tupla(int id, double tec, double tc_i, double ts_inicio, double ts, double ts_fim, double t_fila) {
+        this.id = id;
+        this.tec = tec;
+        this.tc_i = tc_i;
+        this.ts_inicio = ts_inicio;
+        this.ts  = ts;
+        this.ts_fim = ts_fim;
+        this.t_fila = t_fila;
+    }
+    
+    public Tupla(int id, double tc_i, double ts_inicio, double ts, double ts_fim, double t_fila) {
+        this.id = id;
+        this.tc_i = tc_i;
+        this.ts_inicio = ts_inicio;
+        this.ts  = ts;
+        this.ts_fim = ts_fim;
+        this.t_fila = t_fila;
+    }
+
+    
     public int getId() {
         return id;
     }
