@@ -6,9 +6,13 @@
 package br.univali.simulacao.principal;
 
 import br.univali.simulacao.controle.Montador;
-import java.awt.Panel;
+import br.univali.simulacao.modelo.Tupla;
+import br.univali.simulacao.modelo.distribuicoes.Distribuicao;
+import br.univali.simulacao.modelo.distribuicoes.Normal;
+import br.univali.simulacao.modelo.distribuicoes.Uniforme;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -16,9 +20,8 @@ import javax.swing.JPanel;
  */
 public class Tela extends javax.swing.JFrame {
 
-
     Montador montador;
-    
+
     public Tela() {
         initComponents();
     }
@@ -470,7 +473,7 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_simulaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_simulaçãoActionPerformed
-        verificaOpcoesEscolhidas();
+        teste();
     }//GEN-LAST:event_button_simulaçãoActionPerformed
 
     private void comboBox_TECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_TECActionPerformed
@@ -486,6 +489,79 @@ public class Tela extends javax.swing.JFrame {
                 new Tela().setVisible(true);
             }
         });
+    }
+
+    private void teste() {
+        
+        List<Tupla> tuplas = new ArrayList<>();
+        int id = 0;
+        double tc_i;
+        double ts_inicio;
+        double ts_fim;
+        double t_fila;
+        Tupla tuplaAnterior;
+        
+        Distribuicao tecDist = verificaOpcoesEscolhidas(comboBox_TEC.getSelectedItem().toString(), "TEC");
+        Distribuicao tsDist = verificaOpcoesEscolhidas(comboBox_TS.getSelectedItem().toString(), "TS");
+        
+        if (tecDist != null || tsDist != null) {
+            tecDist.calcula();
+            tsDist.calcula();
+
+            /*while (true) {
+
+                if (id == 0) {
+                    tuplas.add(new Tupla(id, 0, 0, tsDist, tsDist, 0));
+                } else {
+                    tuplaAnterior = tuplas.get(id - 1);
+                    //tec = testeTEC[id];                                               // valore para teste e validação
+                    tc_i = tecDist + tuplaAnterior.getTc_i();
+                    if (tuplaAnterior.getTs_fim() <= tc_i) {
+                        ts_inicio = tc_i;
+                    } else {
+                        ts_inicio = tuplaAnterior.getTs_fim();
+                    }
+                    //ts = testeTS[id];                                                 // valore para teste e validação
+                    ts_fim = ts_inicio + tsDist;
+                    t_fila = ts_inicio - tc_i;
+                    if (ts_fim >= tempoSimulacao) {
+                        break;                                                                                               // Verificar
+                    }
+                    tuplas.add(new Tupla(id, tecDist, tc_i, ts_inicio, tsDist, ts_fim, t_fila));
+                }
+                id++;
+            }*/
+        }
+
+    }
+
+    private Distribuicao verificaOpcoesEscolhidas(String dist, String coluna) {
+        if (dist.equals("Normal")) {
+            int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
+                    coluna + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
+            if (resultNormal == JOptionPane.OK_OPTION) {
+                return new Normal((float) spinner_media.getValue(), (float) spinner_desvioPadrao.getValue());
+            }
+        } else if (dist.equals("Uniforme")) {
+            int resultNormal = JOptionPane.showConfirmDialog(null, panel_uniforme,
+                    coluna + " - Distribuição Uniforme", JOptionPane.OK_CANCEL_OPTION);
+            if (resultNormal == JOptionPane.OK_OPTION) {
+                return new Uniforme((double) spinner_uniformeA.getValue(), (double) spinner_uniformeB.getValue());
+            }
+        } else if (dist.equals("Triangular")) {
+            int resultNormal = JOptionPane.showConfirmDialog(null, panel_triangular,
+                    coluna + " - Distribuição Triangular", JOptionPane.OK_CANCEL_OPTION);
+            if (resultNormal == JOptionPane.OK_OPTION) {
+                return null;
+            }
+        } else if (dist.equals("Exponencial")) {  // Exponencial
+            int resultNormal = JOptionPane.showConfirmDialog(null, panel_exponencial,
+                    coluna + " - Distribuição Exponencial", JOptionPane.OK_CANCEL_OPTION);
+            if (resultNormal == JOptionPane.OK_OPTION) {
+                return null;
+            }
+        }
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -539,149 +615,4 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JSpinner spinner_uniformeB;
     // End of variables declaration//GEN-END:variables
 
-    private void verificaOpcoesEscolhidas() {
-        String tec = comboBox_TEC.getSelectedItem().toString();
-        String ts = comboBox_TS.getSelectedItem().toString();
-
-        if (tec.equalsIgnoreCase("Normal")) {
-            if (ts.equalsIgnoreCase("Normal")) {
-                
-                normalNormal("TEC", "TS");
-                
-            } else if (ts.equalsIgnoreCase("Exponencial")) {
-                
-                normalExponencial("TEC", "TS");
-                
-            } else if (ts.equalsIgnoreCase("Uniforme")) {
-                
-                normalUniforme("TEC", "TS");
-                
-            } else if (ts.equalsIgnoreCase("Triangular")) {
-                
-                normalTriangular("TEC", "TS");
-                
-            }
-        } else if (tec.equalsIgnoreCase("Exponencial")) {
-            if (ts.equalsIgnoreCase("Normal")) {
-                
-                normalExponencial("TS", "TEC");
-                
-            } else if (ts.equalsIgnoreCase("Exponencial")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Uniforme")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Triangular")) {
-                System.out.println(tec + " " + ts);
-            }
-        } else if (tec.equalsIgnoreCase("Uniforme")) {
-            if (ts.equalsIgnoreCase("Normal")) {
-                
-                normalUniforme("TS", "TEC");
-                
-            } else if (ts.equalsIgnoreCase("Exponencial")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Uniforme")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Triangular")) {
-                System.out.println(tec + " " + ts);
-            }
-        } else if (tec.equalsIgnoreCase("Triangular")) {
-            if (ts.equalsIgnoreCase("Normal")) {
-                
-                normalTriangular("TS", "TEC");
-                
-            } else if (ts.equalsIgnoreCase("Exponencial")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Uniforme")) {
-                System.out.println(tec + " " + ts);
-            } else if (ts.equalsIgnoreCase("Triangular")) {
-                System.out.println(tec + " " + ts);
-            }
-        }
-    }
-
-    private void normalNormal(String coluna1, String coluna2) {
-        float normalMedia1 = 0, normalDesvioPadrao1 = 0, 
-                normalMedia2 = 0, normalDesvioPadrao2 = 0;
-        int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
-                coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
-        if (resultNormal == JOptionPane.OK_OPTION) {
-            normalMedia1 = (float) spinner_media.getValue();
-            normalDesvioPadrao1 = (float) spinner_desvioPadrao.getValue();
-            System.out.println("\nμ: " + normalMedia1);
-            System.out.println("σ: " + normalDesvioPadrao1);
-        }
-        JPanel p = panel_normal;
-        int resultExponencial = JOptionPane.showConfirmDialog(null, p,
-                coluna2 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
-        if (resultExponencial == JOptionPane.OK_OPTION) {
-            normalMedia2 = (float) spinner_media.getValue();
-            normalDesvioPadrao2 = (float) spinner_desvioPadrao.getValue();
-            
-            System.out.println("\nμ: " + normalMedia2);
-            System.out.println("σ: " + normalDesvioPadrao2);
-        }
-        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia1, normalDesvioPadrao1, normalMedia2, normalDesvioPadrao2, (float) spinner_tempoSimulacao.getValue());
-        montador.exibeTabela();
-    }
-    
-    private void normalUniforme(String coluna1, String coluna2) {
-        float normalMedia = 0, normalDesvioPadrao = 0,
-                uniformeA = 0, uniformeB = 0;
-        
-        int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
-                coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
-        if (resultNormal == JOptionPane.OK_OPTION) {
-            normalMedia = (float) spinner_media.getValue();
-            normalDesvioPadrao = (float) spinner_desvioPadrao.getValue();
-            
-            System.out.println("\nμ: " + normalMedia);
-            System.out.println("σ: " + normalDesvioPadrao);
-        }
-        int resultExponencial = JOptionPane.showConfirmDialog(null, panel_uniforme,
-                coluna2 + " - Distribuição Uniforme", JOptionPane.OK_CANCEL_OPTION);
-        if (resultExponencial == JOptionPane.OK_OPTION) {
-            uniformeA = (float) spinner_uniformeA.getValue();
-            uniformeB = (float) spinner_uniformeB.getValue();
-            
-            System.out.println("a: " + uniformeA);
-            System.out.println("b: " + uniformeB);
-        }
-        
-        montador = new Montador(comboBox_TEC.getSelectedItem().toString(), comboBox_TS.getSelectedItem().toString(), normalMedia, normalDesvioPadrao, uniformeA, uniformeB, (float) spinner_tempoSimulacao.getValue());
-        montador.exibeTabela();
-    }
-    
-    private void normalTriangular(String coluna1, String coluna2) {
-        
-        int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
-                coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
-        if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
-        }
-        int resultExponencial = JOptionPane.showConfirmDialog(null, panel_triangular,
-                coluna2 + " - Distribuição Triangular", JOptionPane.OK_CANCEL_OPTION);
-        if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("a: " + spinner_triangularA.getValue());
-            System.out.println("b: " + spinner_triangularB.getValue());
-            System.out.println("C: " + spinner_triangularC.getValue());
-        }
-    }
-    
-    private void normalExponencial(String coluna1, String coluna2) {
-        
-        int resultNormal = JOptionPane.showConfirmDialog(null, panel_normal,
-                coluna1 + " - Distribuição Normal", JOptionPane.OK_CANCEL_OPTION);
-        if (resultNormal == JOptionPane.OK_OPTION) {
-            System.out.println("μ: " + spinner_media.getValue());
-            System.out.println("σ: " + spinner_desvioPadrao.getValue());
-        }
-        int resultExponencial = JOptionPane.showConfirmDialog(null, panel_exponencial,
-                coluna2 + " - Distribuição Exponencial", JOptionPane.OK_CANCEL_OPTION);
-        if (resultExponencial == JOptionPane.OK_OPTION) {
-            System.out.println("a: " + spinner_exponencialLambda.getValue());
-            System.out.println("b: " + spinner_exponencialLimite.getValue());
-        }
-    }
 }

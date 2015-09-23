@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class Distribuicao {
+public class Distribuicaoasaasadasd {
     
     public double geraValor() {
         Random rand = new Random();

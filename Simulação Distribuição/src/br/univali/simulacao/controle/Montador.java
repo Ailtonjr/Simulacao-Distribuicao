@@ -1,6 +1,6 @@
 package br.univali.simulacao.controle;
 
-import br.univali.simulacao.modelo.Distribuicao;
+import br.univali.simulacao.modelo.Distribuicaoasaasadasd;
 import br.univali.simulacao.modelo.Tupla;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +21,14 @@ public class Montador {
     double ts_fim;
     double t_fila;
     Tupla tuplaAnterior;
-    Distribuicao distribuicao;
+    Distribuicaoasaasadasd distribuicao;
 
     //int[] testeTEC = new int[]{0, 7, 8, 3, 5, 9};
     //int[] testeTS = new int[]{5, 5, 10, 15, 25, 40};
 
     public Montador(String strTec, String strTs, float limiteInferiorTec, float limiteSuperiorTec, float limiteInferiorTs, float limiteSuperiorTs, float tempoSimulacao) {
         System.out.println(strTec + " " + strTs);
-        distribuicao = new Distribuicao();
+        distribuicao = new Distribuicaoasaasadasd();
 
         while (true) {
             if (strTec.equals("Normal")) {
