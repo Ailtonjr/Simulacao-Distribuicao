@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.univali.simulacao.modelo.distribuicoes;
 
 import br.univali.simulacao.modelo.Elemento;
@@ -10,10 +6,7 @@ import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Ailton Jr
- */
+
 public class Exponencial implements Distribuicao {
     double lambda;
     double limite;
