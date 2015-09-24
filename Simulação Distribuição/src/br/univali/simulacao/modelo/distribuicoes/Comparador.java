@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Ailton Jr
  */
-public class God {
+public class Comparador {
 
     private static double geraValor() {
         Random rand = new Random();
@@ -36,5 +36,18 @@ public class God {
         }
         System.err.println("Deu 0 e Chamou de novo");
         return comparaPercentagem(lista);                                           //Teste para nao retornar 0 quando o rand der um valor fora dos intervalos
+    }
+    public static double comparaPercentagemExponencial(List<Elemento> lista) {
+        double n = geraValor();    // Randomico
+        double aux = lista.get(0).getPercentual();
+
+        for (Elemento elemento : lista) {
+            if (n <= aux) {
+                System.out.println("Valor equivalente:\t" + elemento.getValor());
+                return elemento.getValor();
+            }
+            aux += elemento.getPercentual();
+        }
+        return 0;
     }
 }

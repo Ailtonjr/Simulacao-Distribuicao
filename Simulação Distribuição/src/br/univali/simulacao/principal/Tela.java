@@ -5,10 +5,11 @@
  */
 package br.univali.simulacao.principal;
 
-import br.univali.simulacao.controle.Montador;
 import br.univali.simulacao.modelo.Tupla;
 import br.univali.simulacao.modelo.distribuicoes.Distribuicao;
+import br.univali.simulacao.modelo.distribuicoes.Exponencial;
 import br.univali.simulacao.modelo.distribuicoes.Normal;
+import br.univali.simulacao.modelo.distribuicoes.Triangular;
 import br.univali.simulacao.modelo.distribuicoes.Uniforme;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +20,6 @@ import javax.swing.JOptionPane;
  * @author Ailton Jr
  */
 public class Tela extends javax.swing.JFrame {
-
-    Montador montador;
 
     public Tela() {
         initComponents();
@@ -473,7 +472,7 @@ public class Tela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_simulaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_simulaçãoActionPerformed
-        teste();
+        teste((float) spinner_tempoSimulacao.getValue());
     }//GEN-LAST:event_button_simulaçãoActionPerformed
 
     private void comboBox_TECActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_TECActionPerformed
@@ -491,8 +490,8 @@ public class Tela extends javax.swing.JFrame {
         });
     }
 
-    private void teste() {
-        
+    private void teste(float tempoSimulacao) {
+
         List<Tupla> tuplas = new ArrayList<>();
         int id = 0;
         double tc_i;
@@ -500,37 +499,45 @@ public class Tela extends javax.swing.JFrame {
         double ts_fim;
         double t_fila;
         Tupla tuplaAnterior;
-        
+
         Distribuicao tecDist = verificaOpcoesEscolhidas(comboBox_TEC.getSelectedItem().toString(), "TEC");
         Distribuicao tsDist = verificaOpcoesEscolhidas(comboBox_TS.getSelectedItem().toString(), "TS");
-        
-        if (tecDist != null || tsDist != null) {
-            tecDist.calcula();
-            tsDist.calcula();
 
-            /*while (true) {
+        if (tecDist != null || tsDist != null) {
+            while (true) {
+                double tec = tecDist.calcula();
+                double ts = tsDist.calcula();
 
                 if (id == 0) {
-                    tuplas.add(new Tupla(id, 0, 0, tsDist, tsDist, 0));
+                    tuplas.add(new Tupla(id, 0, 0, ts, ts, 0));
                 } else {
                     tuplaAnterior = tuplas.get(id - 1);
                     //tec = testeTEC[id];                                               // valore para teste e validação
-                    tc_i = tecDist + tuplaAnterior.getTc_i();
+                    tc_i = tec + tuplaAnterior.getTc_i();
                     if (tuplaAnterior.getTs_fim() <= tc_i) {
                         ts_inicio = tc_i;
                     } else {
                         ts_inicio = tuplaAnterior.getTs_fim();
                     }
                     //ts = testeTS[id];                                                 // valore para teste e validação
-                    ts_fim = ts_inicio + tsDist;
+                    ts_fim = ts_inicio + ts;
                     t_fila = ts_inicio - tc_i;
                     if (ts_fim >= tempoSimulacao) {
                         break;                                                                                               // Verificar
                     }
-                    tuplas.add(new Tupla(id, tecDist, tc_i, ts_inicio, tsDist, ts_fim, t_fila));
+                    tuplas.add(new Tupla(id, tec, tc_i, ts_inicio, ts, ts_fim, t_fila));
                 }
                 id++;
-            }*/
+            }
+
+            System.out.println("\n\n\n\nID\tTEC\tTC-I\tTS-Inicio\tTS\tTS-Fim\tT-Fila");
+            for (Tupla tupla : tuplas) {
+                if (tupla.getId() == 0) {
+                    System.out.println(tupla.getId() + "\t *\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t" + tupla.getT_fila());
+                } else {
+                    System.out.println(tupla.getId() + "\t" + tupla.getTec() + "\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t" + tupla.getT_fila());
+                }
+            }
         }
 
     }
@@ -546,19 +553,19 @@ public class Tela extends javax.swing.JFrame {
             int resultNormal = JOptionPane.showConfirmDialog(null, panel_uniforme,
                     coluna + " - Distribuição Uniforme", JOptionPane.OK_CANCEL_OPTION);
             if (resultNormal == JOptionPane.OK_OPTION) {
-                return new Uniforme((double) spinner_uniformeA.getValue(), (double) spinner_uniformeB.getValue());
+                return new Uniforme((float) spinner_uniformeA.getValue(), (float) spinner_uniformeB.getValue());
             }
         } else if (dist.equals("Triangular")) {
             int resultNormal = JOptionPane.showConfirmDialog(null, panel_triangular,
                     coluna + " - Distribuição Triangular", JOptionPane.OK_CANCEL_OPTION);
             if (resultNormal == JOptionPane.OK_OPTION) {
-                return null;
+                return new Triangular((float) spinner_triangularA.getValue(), (float) spinner_triangularB.getValue(), (float) spinner_triangularC.getValue());
             }
         } else if (dist.equals("Exponencial")) {  // Exponencial
             int resultNormal = JOptionPane.showConfirmDialog(null, panel_exponencial,
                     coluna + " - Distribuição Exponencial", JOptionPane.OK_CANCEL_OPTION);
             if (resultNormal == JOptionPane.OK_OPTION) {
-                return null;
+                return new Exponencial((float) spinner_exponencialLambda.getValue(), (float) spinner_exponencialLimite.getValue());
             }
         }
         return null;

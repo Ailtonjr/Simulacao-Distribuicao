@@ -13,27 +13,39 @@ import java.util.List;
  *
  * @author Ailton Jr
  */
-public class Uniforme implements Distribuicao {
+public class Triangular implements Distribuicao {
 
     double a;
     double b;
+    double c;
 
-    public Uniforme(double a, double b) {
+    public Triangular(double a, double b, double c) {
         this.a = a;
         this.b = b;
+        this.c = c;
     }
 
     @Override
     public double calcula() {
-        // b deve ser o limite superior (caso contrario teria que fazer Math abs nas diferencas)
+        // b é sempre o maior valor do intervalo
         double retorno = 0;
         int tamanho = (int) (b - a);
         List<Elemento> lista = new ArrayList();
+        double x = b - tamanho + 1;
 
-        System.out.println("a = " + a + "\tb = " + b);   // LOG
+        System.out.println("a = " + a + "\tb = " + b + "\tc = " + c);   // LOG
 
-        for (int i = 0; i < tamanho; i++) {
-            lista.add(new Elemento(i + a, (1 / (b - a)) * 100));    // lista.valor não pode ser incrementado de 1 em 1. Cenario teste a=2.2 b= 3.3
+        for (int i = 1; i < tamanho; i++) {     // [a,b] sao intervalos fechados
+            if (a <= x && x < c) {
+                lista.add(new Elemento(x, (2 * (x - a)) / ((b - a) * (c - a)) * 100));
+            } else if (x == c) {
+                lista.add(new Elemento(x, 2 / (b - a) * 100));
+            } else if (c < x && x <= b) {
+                lista.add(new Elemento(x, (2 * (b - x)) / ((b - a) * (b - c)) * 100));
+            } else {
+                lista.add(new Elemento(x, 0));
+            }
+            x++;
         }
 
         retorno = Comparador.comparaPercentagem(lista);
@@ -44,5 +56,7 @@ public class Uniforme implements Distribuicao {
         System.out.println("\n");
 
         return retorno;
+
     }
+
 }

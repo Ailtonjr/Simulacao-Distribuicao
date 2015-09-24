@@ -38,7 +38,7 @@ public class Normal implements Distribuicao {
         }
         
         // Comparação de percentagem
-        retorno = God.comparaPercentagem(lista);
+        retorno = Comparador.comparaPercentagem(lista);
         
         for (Elemento elemento : lista) {
             System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());

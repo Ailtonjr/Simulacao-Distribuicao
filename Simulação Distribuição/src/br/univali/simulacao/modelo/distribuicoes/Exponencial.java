@@ -6,6 +6,7 @@
 package br.univali.simulacao.modelo.distribuicoes;
 
 import br.univali.simulacao.modelo.Elemento;
+import static java.lang.Math.pow;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,30 +14,29 @@ import java.util.List;
  *
  * @author Ailton Jr
  */
-public class Uniforme implements Distribuicao {
+public class Exponencial implements Distribuicao {
+    double lambda;
+    double limite;
 
-    double a;
-    double b;
-
-    public Uniforme(double a, double b) {
-        this.a = a;
-        this.b = b;
+    public Exponencial(double lambda, double limite) {
+        this.lambda = lambda;
+        this.limite = limite;
     }
-
+    
     @Override
     public double calcula() {
-        // b deve ser o limite superior (caso contrario teria que fazer Math abs nas diferencas)
+        // lambda deve ser maior que zero
         double retorno = 0;
-        int tamanho = (int) (b - a);
         List<Elemento> lista = new ArrayList();
+        double x = lambda;
 
-        System.out.println("a = " + a + "\tb = " + b);   // LOG
+        System.out.println("lambda = " + lambda + "\tlimite = " + limite);
 
-        for (int i = 0; i < tamanho; i++) {
-            lista.add(new Elemento(i + a, (1 / (b - a)) * 100));    // lista.valor não pode ser incrementado de 1 em 1. Cenario teste a=2.2 b= 3.3
+        for (int i = 0; i < limite; i++) {
+            lista.add(new Elemento(lambda + i, pow(lambda * Math.E, (lambda * x)) * (-1)));
         }
 
-        retorno = Comparador.comparaPercentagem(lista);
+        retorno = Comparador.comparaPercentagemExponencial(lista);
 
         for (Elemento elemento : lista) {
             System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
@@ -45,4 +45,5 @@ public class Uniforme implements Distribuicao {
 
         return retorno;
     }
+
 }
