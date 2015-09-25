@@ -587,7 +587,6 @@ public class Tela extends javax.swing.JFrame {
                         label_tempo.setText("Tempo: " + tempoSimulacao);
                         removeEntidade(tempoSimulacao);
                     }
-                    
 
                     label_pid.setText("" + tupla.getId());
                     separator_entrada.setForeground(Color.orange);
@@ -597,10 +596,10 @@ public class Tela extends javax.swing.JFrame {
                         label_tempo.setText("Tempo: " + tempoSimulacao);
                         removeEntidade(tempoSimulacao);
                     }
-                    
+
                     if (!entidadesFila.isEmpty() && tupla.getTs_inicio() == entidadesFila.get(0)) {
                         entidadesFila.remove(0);
-                        
+
                         model.remove(0);
                         list_fila.setModel(model);
                         System.out.println("Saiu da fila " + tempoSimulacao);
@@ -611,49 +610,38 @@ public class Tela extends javax.swing.JFrame {
                     label_tsi.setText("TS-I: " + tupla.getTs_inicio());
                     label_tsf.setText("TS-F: " + tupla.getTs_fim());
                     Thread.currentThread().sleep(350);
-                    
+
                     for (Tupla tuplaInterna : tuplas) {            // Tem alguem esperando
                         if (tuplaInterna.getId() > tupla.getId()) {
                             if (tuplaInterna.getTc_i() < tupla.getTs_fim()) {
-                                int cont = 0;
-                                if(model.size()< 0){
-                                    for (int j = 0; j < model.getSize(); j++) {
-                                        if(model.get(i).equalsIgnoreCase("PID " + tuplaInterna.getId())){
-                                            cont++;
-                                        }
-                                    }
-                                    if(cont < model.getSize()){
-                                        model.addElement("PID " + tuplaInterna.getId());
-                                    }
-                                }else{
-                                    model.addElement("PID " + tuplaInterna.getId());
-                                }
-                                    
+                                //if (model.size() < 0) {
+                                model.addElement("PID " + tuplaInterna.getId());
                                 entidadesFila.add(tuplaInterna.getTs_inicio());     // Guarda
                                 separator_fila.setForeground(Color.ORANGE);
                                 separator_fila2.setForeground(Color.ORANGE);
                                 list_fila.setModel(model);
+                                //}
                             }
                         }
+
+                        Thread.currentThread().sleep(350);
+                        separator_fila.setForeground(Color.DARK_GRAY);
+                        separator_fila2.setForeground(Color.DARK_GRAY);
+                        separator_saida.setForeground(Color.DARK_GRAY);
+
+                        tempoSimulacao++;
+                        label_tempo.setText("Tempo: " + tempoSimulacao);
+                        i++;
                     }
-
-                    Thread.currentThread().sleep(350);
-                    separator_fila.setForeground(Color.DARK_GRAY);
-                    separator_fila2.setForeground(Color.DARK_GRAY);
-                    separator_saida.setForeground(Color.DARK_GRAY);
-
-                    tempoSimulacao++;
-                    label_tempo.setText("Tempo: " + tempoSimulacao);
-                    i++;
                 }
+                Thread.currentThread().sleep(350);
+                removeEntidade(tempoSimulacao);
+                tempoSimulacao++;
+                label_tempo.setText("Tempo: " + tempoSimulacao);
             }
-            Thread.currentThread().sleep(350);
-            removeEntidade(tempoSimulacao);
-            tempoSimulacao++;
-            label_tempo.setText("Tempo: " + tempoSimulacao);
+            Thread.currentThread().sleep(500);
+            label_termino.setText("Terminou");
         }
-        Thread.currentThread().sleep(500);
-        label_termino.setText("Terminou");
     }
 
     void removeEntidade(int tempoSimulacao) {
@@ -669,7 +657,6 @@ public class Tela extends javax.swing.JFrame {
             separator_saida.setForeground(Color.DARK_GRAY);
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_simulação;
     private javax.swing.JComboBox comboBox_TEC;
