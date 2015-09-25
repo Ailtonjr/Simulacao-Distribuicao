@@ -490,7 +490,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="label_chegada" pref="105" max="32767" attributes="0"/>
                           <Component id="label_tsi" alignment="0" pref="105" max="32767" attributes="0"/>
-                          <Component id="label_tsif" alignment="0" pref="105" max="32767" attributes="0"/>
+                          <Component id="label_tsf" alignment="0" pref="105" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -504,7 +504,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="label_tsi" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="label_tsif" min="-2" pref="23" max="-2" attributes="0"/>
+                      <Component id="label_tsf" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -525,7 +525,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="label_tsif">
+            <Component class="javax.swing.JLabel" name="label_tsf">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>

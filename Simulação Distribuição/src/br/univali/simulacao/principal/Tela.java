@@ -66,7 +66,7 @@ public class Tela extends javax.swing.JFrame {
         panel_processador = new javax.swing.JPanel();
         label_chegada = new javax.swing.JLabel();
         label_tsi = new javax.swing.JLabel();
-        label_tsif = new javax.swing.JLabel();
+        label_tsf = new javax.swing.JLabel();
         panel_processo = new javax.swing.JPanel();
         label_pid = new javax.swing.JLabel();
         separator_entrada = new javax.swing.JSeparator();
@@ -278,7 +278,7 @@ public class Tela extends javax.swing.JFrame {
 
         label_tsi.setForeground(new java.awt.Color(255, 255, 255));
 
-        label_tsif.setForeground(new java.awt.Color(255, 255, 255));
+        label_tsf.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout panel_processadorLayout = new javax.swing.GroupLayout(panel_processador);
         panel_processador.setLayout(panel_processadorLayout);
@@ -289,7 +289,7 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(panel_processadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_chegada, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                     .addComponent(label_tsi, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(label_tsif, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                    .addComponent(label_tsf, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_processadorLayout.setVerticalGroup(
@@ -300,7 +300,7 @@ public class Tela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_tsi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(label_tsif, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(label_tsf, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -591,7 +591,7 @@ public class Tela extends javax.swing.JFrame {
                     separator_entrada.setForeground(Color.orange);
                     label_chegada.setText("TC-I: " + tupla.getTc_i());
                     label_tsi.setText("TS-I: " + tupla.getTs_inicio());
-                    label_tsi.setText("TS-F: " + tupla.getTs_fim());
+                    label_tsf.setText("TS-F: " + tupla.getTs_fim());
                     Thread.currentThread().sleep(250);
 
                     for (Tupla tuplaInterna : tuplas) { // Tem alguem esperando
@@ -614,7 +614,7 @@ public class Tela extends javax.swing.JFrame {
 
                     separator_fila.setForeground(Color.DARK_GRAY);
                     separator_fila2.setForeground(Color.DARK_GRAY);
-                    //separator_saida.setForeground(Color.DARK_GRAY);
+                    separator_saida.setForeground(Color.DARK_GRAY);
 
                     tempoSimulacao++;
                     label_tempo.setText("Tempo: " + tempoSimulacao);
@@ -654,8 +654,8 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel label_tringularA;
     private javax.swing.JLabel label_tringularB;
     private javax.swing.JLabel label_tringularC;
+    private javax.swing.JLabel label_tsf;
     private javax.swing.JLabel label_tsi;
-    private javax.swing.JLabel label_tsif;
     private javax.swing.JLabel label_uniformeA;
     private javax.swing.JLabel label_uniformeB;
     private javax.swing.JList list_fila;
