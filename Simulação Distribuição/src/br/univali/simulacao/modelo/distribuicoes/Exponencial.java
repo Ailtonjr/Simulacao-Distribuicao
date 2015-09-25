@@ -20,13 +20,17 @@ public class Exponencial implements Distribuicao {
     public double calcula() {
         // lambda deve ser maior que zero
         double retorno = 0;
+        double tamanho = limite - lambda;
         List<Elemento> lista = new ArrayList();
-        double x = lambda;
+        double x = limite - tamanho;
 
         System.out.println("lambda = " + lambda + "\tlimite = " + limite);
 
-        for (int i = 0; i < limite; i++) {
-            lista.add(new Elemento(lambda + i, pow(lambda * Math.E, (lambda * x)) * (-1)));
+        for (int i = 0; i < tamanho; i++) {
+            lista.add(new Elemento(x, (1/lambda) * pow(Math.E, (x/lambda) * (-1) ) ));
+            x++;
+            
+            // lambda + i, pow(lambda * Math.E, (lambda * x)) * (-1)s
         }
         
         retorno = Comparador.comparaPercentagemExponencial(lista);
