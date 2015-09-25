@@ -107,6 +107,8 @@ public class Relatorio {
             
             bw.close();
             fw.close();
+            
+            JOptionPane.showMessageDialog(null, "Relatorio gerado em: \n" + System.getProperty("user.dir"));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório");
             ex.printStackTrace();

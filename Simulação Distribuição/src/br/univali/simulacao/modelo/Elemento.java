@@ -11,6 +11,10 @@ public class Elemento {
         this.percentual = percentual;
     }
 
+    public Elemento(double x, double d, double d0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public double getValor() {
         return valor;
     }
