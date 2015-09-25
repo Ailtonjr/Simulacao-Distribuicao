@@ -28,7 +28,7 @@ public class Exponencial implements Distribuicao {
         for (int i = 0; i < limite; i++) {
             lista.add(new Elemento(lambda + i, pow(lambda * Math.E, (lambda * x)) * (-1)));
         }
-
+        
         retorno = Comparador.comparaPercentagemExponencial(lista);
 
         for (Elemento elemento : lista) {
@@ -38,5 +38,4 @@ public class Exponencial implements Distribuicao {
 
         return retorno;
     }
-
 }

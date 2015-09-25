@@ -37,6 +37,7 @@ public class Comparador {
         System.err.println("Deu 0 e Chamou de novo");
         return comparaPercentagem(lista);                                           //Teste para nao retornar 0 quando o rand der um valor fora dos intervalos
     }
+    
     public static double comparaPercentagemExponencial(List<Elemento> lista) {
         double n = geraValor();    // Randomico
         double aux = lista.get(0).getPercentual();
