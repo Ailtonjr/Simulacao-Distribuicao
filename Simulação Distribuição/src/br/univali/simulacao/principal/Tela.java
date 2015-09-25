@@ -1,6 +1,7 @@
 package br.univali.simulacao.principal;
 
 
+import br.univali.simulacao.modelo.Relatorio;
 import br.univali.simulacao.modelo.Tupla;
 import br.univali.simulacao.modelo.distribuicoes.Distribuicao;
 import br.univali.simulacao.modelo.distribuicoes.Exponencial;
@@ -630,6 +631,8 @@ public class Tela extends javax.swing.JFrame {
         }
         Thread.currentThread().sleep(500);
         label_termino.setText("Terminou");
+        
+        new Relatorio(tuplas);
     }
 
     void removeEntidade(int tempoSimulacao) {

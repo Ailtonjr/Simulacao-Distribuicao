@@ -18,7 +18,6 @@ public class Exponencial implements Distribuicao {
     
     @Override
     public double calcula() {
-        // lambda deve ser maior que zero
         double retorno = 0;
         double tamanho = limite - lambda;
         List<Elemento> lista = new ArrayList();
@@ -27,13 +26,17 @@ public class Exponencial implements Distribuicao {
         System.out.println("lambda = " + lambda + "\tlimite = " + limite);
 
         for (int i = 0; i < tamanho; i++) {
-            lista.add(new Elemento(x, (1/lambda) * pow(Math.E, (x/lambda) * (-1) ) ));
+            if (x >= 0 && lambda > 0) {
+                lista.add(new Elemento(x, ((1/lambda) * pow(Math.E, (x/lambda) * (-1) )) *100 ));
+            } else if (x >= 0) {
+                lista.add(new Elemento(x, (pow(lambda * Math.E, (lambda * x)) * (-1)) * 100 ));
+            } else if (x < 0) {
+                lista.add(new Elemento(x, 0));
+            }   
             x++;
-            
-            // lambda + i, pow(lambda * Math.E, (lambda * x)) * (-1)s
         }
         
-        retorno = Comparador.comparaPercentagemExponencial(lista);
+        retorno = Comparador.comparaPercentagem(lista);
 
         for (Elemento elemento : lista) {
             System.out.println(elemento.getValor() + "\t" + elemento.getPercentual());
