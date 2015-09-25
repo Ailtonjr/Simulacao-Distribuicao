@@ -1,6 +1,5 @@
 package br.univali.simulacao.principal;
 
-
 import br.univali.simulacao.modelo.Tupla;
 import br.univali.simulacao.modelo.distribuicoes.Distribuicao;
 import br.univali.simulacao.modelo.distribuicoes.Exponencial;
@@ -19,6 +18,7 @@ public class Tela extends javax.swing.JFrame {
 
     List<Tupla> tuplas;
     List<Double> entidades;
+    List<Double> entidadesFila;
 
     public Tela() {
         initComponents();
@@ -572,6 +572,7 @@ public class Tela extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel();
         //List<Entidade> entidadesFila = new ArrayList<>();
         entidades = new ArrayList<>();
+        entidadesFila = new ArrayList<>();
 
         while (tempoSimulacao < (float) spinner_tempoSimulacao.getValue()) {
 
@@ -586,6 +587,7 @@ public class Tela extends javax.swing.JFrame {
                         label_tempo.setText("Tempo: " + tempoSimulacao);
                         removeEntidade(tempoSimulacao);
                     }
+                    
 
                     label_pid.setText("" + tupla.getId());
                     separator_entrada.setForeground(Color.orange);
@@ -595,17 +597,39 @@ public class Tela extends javax.swing.JFrame {
                         label_tempo.setText("Tempo: " + tempoSimulacao);
                         removeEntidade(tempoSimulacao);
                     }
+                    
+                    if (!entidadesFila.isEmpty() && tupla.getTs_inicio() == entidadesFila.get(0)) {
+                        entidadesFila.remove(0);
+                        
+                        model.remove(0);
+                        list_fila.setModel(model);
+                        System.out.println("Saiu da fila " + tempoSimulacao);
+                    }
 
                     separator_entrada.setForeground(Color.DARK_GRAY);
                     label_chegada.setText("TC-I: " + tupla.getTc_i());
                     label_tsi.setText("TS-I: " + tupla.getTs_inicio());
                     label_tsf.setText("TS-F: " + tupla.getTs_fim());
                     Thread.currentThread().sleep(350);
-
-                    for (Tupla tuplaInterna : tuplas) { // Tem alguem esperando
+                    
+                    for (Tupla tuplaInterna : tuplas) {            // Tem alguem esperando
                         if (tuplaInterna.getId() > tupla.getId()) {
                             if (tuplaInterna.getTc_i() < tupla.getTs_fim()) {
-                                model.addElement("PID " + tuplaInterna.getId());
+                                int cont = 0;
+                                if(model.size()< 0){
+                                    for (int j = 0; j < model.getSize(); j++) {
+                                        if(model.get(i).equalsIgnoreCase("PID " + tuplaInterna.getId())){
+                                            cont++;
+                                        }
+                                    }
+                                    if(cont < model.getSize()){
+                                        model.addElement("PID " + tuplaInterna.getId());
+                                    }
+                                }else{
+                                    model.addElement("PID " + tuplaInterna.getId());
+                                }
+                                    
+                                entidadesFila.add(tuplaInterna.getTs_inicio());     // Guarda
                                 separator_fila.setForeground(Color.ORANGE);
                                 separator_fila2.setForeground(Color.ORANGE);
                                 list_fila.setModel(model);
@@ -633,7 +657,7 @@ public class Tela extends javax.swing.JFrame {
     }
 
     void removeEntidade(int tempoSimulacao) {
-        if (!entidades.isEmpty() &&entidades.get(0) == tempoSimulacao) {     // Verifica se é tempo de sair
+        if (!entidades.isEmpty() && entidades.get(0) == tempoSimulacao) {     // Verifica se é tempo de sair
             entidades.remove(0);
             System.out.println("Saiu em " + tempoSimulacao);
             separator_saida.setForeground(Color.ORANGE);
