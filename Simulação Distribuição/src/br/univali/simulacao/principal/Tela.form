@@ -44,14 +44,14 @@
         <Component class="javax.swing.JSpinner" name="spinner_media">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="1.0" type="number"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JSpinner" name="spinner_desvioPadrao">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+              <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="1.0" type="number"/>
             </Property>
           </Properties>
         </Component>
@@ -319,7 +319,7 @@
                                           <Component id="label_TEC" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="label_tempoSistema" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="comboBox_TEC" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="comboBox_tempoSistema" alignment="0" pref="166" max="32767" attributes="0"/>
+                                          <Component id="comboBox_tempoSistema" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="54" max="32767" attributes="0"/>
                                   </Group>
@@ -488,8 +488,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="label_chegada" max="32767" attributes="0"/>
-                          <Component id="label_tsi" pref="105" max="32767" attributes="0"/>
+                          <Component id="label_chegada" pref="105" max="32767" attributes="0"/>
+                          <Component id="label_tsi" alignment="0" pref="105" max="32767" attributes="0"/>
+                          <Component id="label_tsif" alignment="0" pref="105" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -502,7 +503,9 @@
                       <Component id="label_chegada" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="label_tsi" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace pref="59" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="label_tsif" min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -516,6 +519,13 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="label_tsi">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="label_tsif">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -657,7 +667,7 @@
         <Component class="javax.swing.JLabel" name="label_tempo">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="240" width="100" height="-1"/>
+              <AbsoluteConstraints x="10" y="230" width="100" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -681,7 +691,7 @@
     <Component class="javax.swing.JSpinner" name="spinner_tempoSimulacao">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="0.1" type="number"/>
+          <SpinnerModel initial="0.0" numberType="java.lang.Float" stepSize="1.0" type="number"/>
         </Property>
       </Properties>
     </Component>

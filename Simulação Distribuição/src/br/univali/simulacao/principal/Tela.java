@@ -1,4 +1,3 @@
-
 package br.univali.simulacao.principal;
 
 import br.univali.simulacao.modelo.Tupla;
@@ -14,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
 
 public class Tela extends javax.swing.JFrame {
 
@@ -68,6 +66,7 @@ public class Tela extends javax.swing.JFrame {
         panel_processador = new javax.swing.JPanel();
         label_chegada = new javax.swing.JLabel();
         label_tsi = new javax.swing.JLabel();
+        label_tsif = new javax.swing.JLabel();
         panel_processo = new javax.swing.JPanel();
         label_pid = new javax.swing.JLabel();
         separator_entrada = new javax.swing.JSeparator();
@@ -87,9 +86,9 @@ public class Tela extends javax.swing.JFrame {
 
         label_media.setText("μ:");
 
-        spinner_media.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+        spinner_media.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(1.0f)));
 
-        spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+        spinner_desvioPadrao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(1.0f)));
 
         label_desvioPadrao.setText("σ:");
 
@@ -279,6 +278,8 @@ public class Tela extends javax.swing.JFrame {
 
         label_tsi.setForeground(new java.awt.Color(255, 255, 255));
 
+        label_tsif.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout panel_processadorLayout = new javax.swing.GroupLayout(panel_processador);
         panel_processador.setLayout(panel_processadorLayout);
         panel_processadorLayout.setHorizontalGroup(
@@ -286,8 +287,9 @@ public class Tela extends javax.swing.JFrame {
             .addGroup(panel_processadorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_processadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_chegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_tsi, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
+                    .addComponent(label_chegada, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(label_tsi, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(label_tsif, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_processadorLayout.setVerticalGroup(
@@ -297,11 +299,13 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(label_chegada, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(label_tsi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(label_tsif, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         desktopPane_simulacao.add(panel_processador);
-        panel_processador.setBounds(140, 50, 125, 124);
+        panel_processador.setBounds(140, 50, 129, 127);
 
         panel_processo.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -358,15 +362,15 @@ public class Tela extends javax.swing.JFrame {
         desktopPane_simulacao.add(jScrollPane1);
         jScrollPane1.setBounds(280, 140, 70, 100);
         desktopPane_simulacao.add(label_tempo);
-        label_tempo.setBounds(10, 240, 100, 0);
+        label_tempo.setBounds(10, 230, 100, 20);
 
         label_saida.setText("Saida");
         desktopPane_simulacao.add(label_saida);
-        label_saida.setBounds(290, 50, 34, 14);
+        label_saida.setBounds(290, 50, 34, 16);
 
         label_tempoSimulacao.setText("Tempo da simulação");
 
-        spinner_tempoSimulacao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(0.1f)));
+        spinner_tempoSimulacao.setModel(new javax.swing.SpinnerNumberModel(Float.valueOf(0.0f), null, null, Float.valueOf(1.0f)));
 
         jLabel4.setText("Simulação");
 
@@ -397,7 +401,7 @@ public class Tela extends javax.swing.JFrame {
                                             .addComponent(label_TEC)
                                             .addComponent(label_tempoSistema)
                                             .addComponent(comboBox_TEC, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(comboBox_tempoSistema, 0, 166, Short.MAX_VALUE))
+                                            .addComponent(comboBox_tempoSistema, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(label_TS)
@@ -447,7 +451,7 @@ public class Tela extends javax.swing.JFrame {
     private void button_simulaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_simulaçãoActionPerformed
         montaTabela((float) spinner_tempoSimulacao.getValue());
         Thread thread = new Thread(new Runnable() {
-            
+
             @Override
             public void run() {
                 System.out.println("chamou");
@@ -561,48 +565,56 @@ public class Tela extends javax.swing.JFrame {
         int tempoSimulacao = 0;
         int i = 0;
         DefaultListModel<String> model = new DefaultListModel();
-        
 
         while (tempoSimulacao < (float) spinner_tempoSimulacao.getValue()) {
-            
-            
-            if (tuplas.get(i).getTc_i() == tempoSimulacao) {
+
+            if (i < tuplas.size() && tuplas.get(i).getTc_i() == tempoSimulacao) {
                 for (Tupla tupla : tuplas) {
+
+                    while (tempoSimulacao < tupla.getTc_i()) {
+                        Thread.currentThread().sleep(500);
+                        tempoSimulacao++;
+                        label_tempo.setText("Tempo: " + tempoSimulacao);
+                    }
+
                     label_pid.setText("" + tupla.getId());
                     Thread.currentThread().sleep(500);
 
                     separator_entrada.setForeground(Color.orange);
-                    label_chegada.setText("TC-I:" + tupla.getTc_i());
-                    label_tsi.setText("TS-I" + tupla.getTs_inicio());
-                    Thread.currentThread().sleep(500);
-                    
+                    label_chegada.setText("TC-I: " + tupla.getTc_i());
+                    label_tsi.setText("TS-I: " + tupla.getTs_inicio());
+                    label_tsi.setText("TS-F: " + tupla.getTs_fim());
+                    Thread.currentThread().sleep(250);
+
                     for (Tupla tuplaInterna : tuplas) { // Tem alguem esperando
                         if (tuplaInterna.getId() > tupla.getId()) {
                             if (tuplaInterna.getTc_i() < tupla.getTs_fim()) {
-                                model.addElement("" + tuplaInterna.getId());
+                                model.addElement("PID " + tuplaInterna.getId());
                                 separator_fila.setForeground(Color.ORANGE);
                                 separator_fila2.setForeground(Color.ORANGE);
                                 list_fila.setModel(model);
                             }
                         }
                     }
-                    
+
                     if (tempoSimulacao == tupla.getTs_fim()) {
+                        System.out.println("valor tempo simulacao " + tempoSimulacao);
                         separator_saida.setForeground(Color.ORANGE);
                     }
-                    
-                    Thread.currentThread().sleep(500);
-                    
+
+                    Thread.currentThread().sleep(250);
+
                     separator_fila.setForeground(Color.DARK_GRAY);
                     separator_fila2.setForeground(Color.DARK_GRAY);
                     separator_saida.setForeground(Color.DARK_GRAY);
+
                     
                     tempoSimulacao++;
+                    label_tempo.setText("Tempo: " + tempoSimulacao);
                     i++;
                 }
+
             }
-            //label_tempo.setText("Tempo: " + tempoSimulacao);
-            tempoSimulacao++;
         }
     }
 
@@ -636,6 +648,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JLabel label_tringularB;
     private javax.swing.JLabel label_tringularC;
     private javax.swing.JLabel label_tsi;
+    private javax.swing.JLabel label_tsif;
     private javax.swing.JLabel label_uniformeA;
     private javax.swing.JLabel label_uniformeB;
     private javax.swing.JList list_fila;
