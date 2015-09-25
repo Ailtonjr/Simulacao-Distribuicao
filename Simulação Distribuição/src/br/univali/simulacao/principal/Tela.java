@@ -573,8 +573,16 @@ public class Tela extends javax.swing.JFrame {
 
                     while (tempoSimulacao < tupla.getTc_i()) {
                         Thread.currentThread().sleep(500);
+                        if (tempoSimulacao == tupla.getTs_fim()) {
+                            System.out.println("valor tempo simulacao " + tempoSimulacao);
+                            separator_saida.setForeground(Color.ORANGE);
+                        }
                         tempoSimulacao++;
                         label_tempo.setText("Tempo: " + tempoSimulacao);
+                        if (tempoSimulacao == tupla.getTs_fim()) {
+                            System.out.println("valor tempo simulacao " + tempoSimulacao);
+                            separator_saida.setForeground(Color.ORANGE);
+                        }
                     }
 
                     label_pid.setText("" + tupla.getId());
@@ -606,9 +614,8 @@ public class Tela extends javax.swing.JFrame {
 
                     separator_fila.setForeground(Color.DARK_GRAY);
                     separator_fila2.setForeground(Color.DARK_GRAY);
-                    separator_saida.setForeground(Color.DARK_GRAY);
+                    //separator_saida.setForeground(Color.DARK_GRAY);
 
-                    
                     tempoSimulacao++;
                     label_tempo.setText("Tempo: " + tempoSimulacao);
                     i++;
