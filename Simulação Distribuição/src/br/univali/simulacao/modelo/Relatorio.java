@@ -82,6 +82,10 @@ public class Relatorio {
                 divisorAtendimento++;
             }
             
+            String permanencia;
+            if (dividendoPermanencia == 0)  permanencia = "0 nao houveram filas.";
+            else    permanencia = "" + dividendoPermanencia/divisorPermanencia;
+            
             dados.add("Maior tempo para ser processado: " + maiorTempoProcessado);
             dados.add("Menor tempo para ser processado: " + menorTempoProcessado);
             dados.add("Maior tempo em fila: " + maiorTempoFila);
@@ -90,7 +94,7 @@ public class Relatorio {
             dados.add("Menor tempo filas + processos: " + menorSistemaFilas);
             dados.add("Processo que gerou mais filas: " + "PROCESSO 1");        // M3
             dados.add("Processo que gerou menos filas: " + "PROCESSO 1");       // M3
-            dados.add("Tempo medio de permanencia das entidades em fila: " + divisorPermanencia/dividendoPermanencia);    // M3
+            dados.add("Tempo medio de permanencia das entidades em fila: " + permanencia);    // M3
             dados.add("Tempo medio de atendimendo das entidades: " + dividendoAtendimento/divisorAtendimento);
             dados.add("Quantidade de entidades que entram no PROCESSO 1: " + tabela.size());    // M3
             dados.add("Quantidade de entidades que saem do PROCESSO 1: " + tabela.size());
