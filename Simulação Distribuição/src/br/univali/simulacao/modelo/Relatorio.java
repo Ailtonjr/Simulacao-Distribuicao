@@ -66,7 +66,7 @@ public class Relatorio {
                 // Menor tempo Sistema filas
                 if ((tupla.getTs() + tupla.getT_fila()) < auxMenorSistemaFilas) {
                     auxMenorSistemaFilas = tupla.getTs() + tupla.getT_fila();
-                    maiorSistemaFilas = tupla.getId() + "\t" + (tupla.getTs() + tupla.getT_fila());
+                    menorSistemaFilas = tupla.getId() + "\t" + (tupla.getTs() + tupla.getT_fila());
                 }
                 
                 // Reservado para processos
