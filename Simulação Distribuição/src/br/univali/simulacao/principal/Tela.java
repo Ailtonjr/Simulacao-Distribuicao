@@ -655,6 +655,7 @@ public class Tela extends javax.swing.JFrame {
             model.addElement("PID " + entidadesFila1.getId());
         }
         list_fila.setModel(model);
+        //teste
     }
 
     void removeEntidade(int tempoSimulacao) {
