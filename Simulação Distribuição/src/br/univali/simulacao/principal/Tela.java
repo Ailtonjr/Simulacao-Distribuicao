@@ -570,7 +570,6 @@ public class Tela extends javax.swing.JFrame {
         int tempoSimulacao = 0;
         int i = 0;
         DefaultListModel<String> model = new DefaultListModel();
-        //List<Entidade> entidadesFila = new ArrayList<>();
         entidades = new ArrayList<>();
         entidadesFila = new ArrayList<>();
 
@@ -602,7 +601,7 @@ public class Tela extends javax.swing.JFrame {
 
                         model.remove(0);
                         list_fila.setModel(model);
-                        System.out.println("Saiu da fila " + tempoSimulacao);
+                        System.out.println(tupla.getId() + " saiu da fila " + tempoSimulacao);
                     }
 
                     separator_entrada.setForeground(Color.DARK_GRAY);
@@ -623,31 +622,39 @@ public class Tela extends javax.swing.JFrame {
                                 //}
                             }
                         }
-
-                        Thread.currentThread().sleep(350);
-                        separator_fila.setForeground(Color.DARK_GRAY);
-                        separator_fila2.setForeground(Color.DARK_GRAY);
-                        separator_saida.setForeground(Color.DARK_GRAY);
-
-                        tempoSimulacao++;
-                        label_tempo.setText("Tempo: " + tempoSimulacao);
-                        i++;
                     }
+
+                    Thread.currentThread().sleep(350);
+                    separator_fila.setForeground(Color.DARK_GRAY);
+                    separator_fila2.setForeground(Color.DARK_GRAY);
+                    separator_saida.setForeground(Color.DARK_GRAY);
+
+                    tempoSimulacao++;
+                    label_tempo.setText("Tempo: " + tempoSimulacao);
+                    i++;
+
                 }
                 Thread.currentThread().sleep(350);
                 removeEntidade(tempoSimulacao);
                 tempoSimulacao++;
                 label_tempo.setText("Tempo: " + tempoSimulacao);
             }
-            Thread.currentThread().sleep(500);
+            removeEntidade(tempoSimulacao);
+            while (tempoSimulacao < (float) spinner_tempoSimulacao.getValue()) { 
+                removeEntidade(tempoSimulacao);
+                Thread.currentThread().sleep(500);
+                tempoSimulacao++;
+                label_tempo.setText("Tempo: " + tempoSimulacao);
+            }
             label_termino.setText("Terminou");
+            
         }
     }
 
     void removeEntidade(int tempoSimulacao) {
         if (!entidades.isEmpty() && entidades.get(0) == tempoSimulacao) {     // Verifica se é tempo de sair
+            System.out.println("terminou em " + tempoSimulacao);
             entidades.remove(0);
-            System.out.println("Saiu em " + tempoSimulacao);
             separator_saida.setForeground(Color.ORANGE);
             try {
                 Thread.currentThread().sleep(500);
