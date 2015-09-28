@@ -19,7 +19,7 @@ public class Tela extends javax.swing.JFrame {
 
     List<Tupla> tuplas;
     List<Double> entidades;
-    List<Double> entidadesFila;
+    List<Tupla> entidadesFila;
 
     public Tela() {
         initComponents();
@@ -570,7 +570,7 @@ public class Tela extends javax.swing.JFrame {
     private void exibeTela() throws InterruptedException {
         int tempoSimulacao = 0;
         int i = 0;
-        DefaultListModel<String> model = new DefaultListModel();
+
         entidades = new ArrayList<>();
         entidadesFila = new ArrayList<>();
 
@@ -597,11 +597,9 @@ public class Tela extends javax.swing.JFrame {
                         removeEntidade(tempoSimulacao);
                     }
 
-                    if (!entidadesFila.isEmpty() && tupla.getTs_inicio() == entidadesFila.get(0)) {
+                    if (!entidadesFila.isEmpty() && tupla.getTs_inicio() == entidadesFila.get(0).getTs_inicio()) {
                         entidadesFila.remove(0);
-
-                        model.remove(0);
-                        list_fila.setModel(model);
+                        exibeFila();
                         System.out.println(tupla.getId() + " saiu da fila " + tempoSimulacao);
                     }
 
@@ -614,16 +612,14 @@ public class Tela extends javax.swing.JFrame {
                     for (Tupla tuplaInterna : tuplas) {            // Tem alguem esperando
                         if (tuplaInterna.getId() > tupla.getId()) {
                             if (tuplaInterna.getTc_i() < tupla.getTs_fim()) {
-                                //if (model.size() < 0) {
-                                model.addElement("PID " + tuplaInterna.getId());
-                                entidadesFila.add(tuplaInterna.getTs_inicio());     // Guarda
+                                entidadesFila.add(tuplaInterna);     // Guarda
                                 separator_fila.setForeground(Color.ORANGE);
                                 separator_fila2.setForeground(Color.ORANGE);
-                                list_fila.setModel(model);
-                                //}
                             }
                         }
                     }
+                    exibeFila();
+                    
 
                     Thread.currentThread().sleep(350);
                     separator_fila.setForeground(Color.DARK_GRAY);
@@ -641,7 +637,7 @@ public class Tela extends javax.swing.JFrame {
                 label_tempo.setText("Tempo: " + tempoSimulacao);
             }
             removeEntidade(tempoSimulacao);
-            while (tempoSimulacao < (float) spinner_tempoSimulacao.getValue()) { 
+            while (tempoSimulacao < (float) spinner_tempoSimulacao.getValue()) {
                 removeEntidade(tempoSimulacao);
                 Thread.currentThread().sleep(500);
                 tempoSimulacao++;
@@ -649,8 +645,15 @@ public class Tela extends javax.swing.JFrame {
             }
             label_termino.setText("Terminou");
             Relatorio relatorio = new Relatorio(tuplas);
-            
         }
+    }
+
+    void exibeFila() {
+        DefaultListModel<String> model = new DefaultListModel();
+        for (Tupla entidadesFila1 : entidadesFila) {
+            model.addElement("PID " + entidadesFila1.getId());
+        }
+        list_fila.setModel(model);
     }
 
     void removeEntidade(int tempoSimulacao) {
