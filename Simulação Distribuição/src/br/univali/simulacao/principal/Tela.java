@@ -649,11 +649,13 @@ public class Tela extends javax.swing.JFrame {
     }
 
     void exibeFila() {
+        list_fila.removeAll();
         DefaultListModel<String> model = new DefaultListModel();
         for (Tupla entidadesFila1 : entidadesFila) {
             model.addElement("PID " + entidadesFila1.getId());
         }
         list_fila.setModel(model);
+        //teste
     }
 
     void removeEntidade(int tempoSimulacao) {
