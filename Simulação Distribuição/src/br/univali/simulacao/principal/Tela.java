@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 public class Tela extends javax.swing.JFrame {
 
@@ -649,13 +650,20 @@ public class Tela extends javax.swing.JFrame {
     }
 
     void exibeFila() {
-        list_fila.removeAll();
         DefaultListModel<String> model = new DefaultListModel();
+        ListModel<String> teste = list_fila.getModel();
         for (Tupla entidadesFila1 : entidadesFila) {
-            model.addElement("PID " + entidadesFila1.getId());
+            int aux = 0;
+            for (int i = 0; i < teste.getSize(); i++) {
+                if (!teste.getElementAt(i).equals(entidadesFila1)) {
+                    aux++;
+                }
+            }
+            if (teste.getSize() == aux) {
+                model.addElement("PID " + entidadesFila1.getId());
+            }
         }
         list_fila.setModel(model);
-        //teste
     }
 
     void removeEntidade(int tempoSimulacao) {
