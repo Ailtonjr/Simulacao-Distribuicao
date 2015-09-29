@@ -109,10 +109,15 @@ public class Relatorio {
                 bw.write(dado + "\r\n");
             }
             
+            bw.write("\r\n\r\n\r\n ID \t TEC \t TC-I \t TS-Inicio \t TS \t TS-Fim \t T-Fila \r\n");
+            for (Tupla tupla : tabela) {
+                bw.write(tupla.getId() + "\t" + tupla.getTec() + "\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t\t" + tupla.getT_fila() + "\r\n");
+            }
+            
             bw.close();
             fw.close();
             
-            JOptionPane.showMessageDialog(null, "Relatorio gerado em: \n" + System.getProperty("user.dir"));
+            JOptionPane.showMessageDialog(null, "Simulação concluida com sucesso!\nRelatorio gerado em: \n" + System.getProperty("user.dir"));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório");
             ex.printStackTrace();
