@@ -82,6 +82,10 @@ public class Relatorio {
                 divisorAtendimento++;
             }
             
+            String permanencia;
+            if (dividendoPermanencia == 0)  permanencia = "0 nao houveram filas.";
+            else    permanencia = "" + dividendoPermanencia/divisorPermanencia;
+            
             dados.add("Maior tempo para ser processado: " + maiorTempoProcessado);
             dados.add("Menor tempo para ser processado: " + menorTempoProcessado);
             dados.add("Maior tempo em fila: " + maiorTempoFila);
@@ -90,7 +94,7 @@ public class Relatorio {
             dados.add("Menor tempo filas + processos: " + menorSistemaFilas);
             dados.add("Processo que gerou mais filas: " + "PROCESSO 1");        // M3
             dados.add("Processo que gerou menos filas: " + "PROCESSO 1");       // M3
-            dados.add("Tempo medio de permanencia das entidades em fila: " + divisorPermanencia/dividendoPermanencia);    // M3
+            dados.add("Tempo medio de permanencia das entidades em fila: " + permanencia);    // M3
             dados.add("Tempo medio de atendimendo das entidades: " + dividendoAtendimento/divisorAtendimento);
             dados.add("Quantidade de entidades que entram no PROCESSO 1: " + tabela.size());    // M3
             dados.add("Quantidade de entidades que saem do PROCESSO 1: " + tabela.size());
@@ -105,10 +109,15 @@ public class Relatorio {
                 bw.write(dado + "\r\n");
             }
             
+            bw.write("\r\n\r\n\r\n ID \t TEC \t TC-I \t TS-Inicio \t TS \t TS-Fim \t T-Fila \r\n");
+            for (Tupla tupla : tabela) {
+                bw.write(tupla.getId() + "\t" + tupla.getTec() + "\t" + tupla.getTc_i() + "\t" + tupla.getTs_inicio() + "\t\t" + tupla.getTs() + "\t" + tupla.getTs_fim() + "\t\t" + tupla.getT_fila() + "\r\n");
+            }
+            
             bw.close();
             fw.close();
             
-            JOptionPane.showMessageDialog(null, "Relatorio gerado em: \n" + System.getProperty("user.dir"));
+            JOptionPane.showMessageDialog(null, "Simulação concluida com sucesso!\nRelatorio gerado em: \n" + System.getProperty("user.dir"));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório");
             ex.printStackTrace();
