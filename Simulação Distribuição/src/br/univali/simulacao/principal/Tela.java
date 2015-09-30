@@ -1,5 +1,6 @@
 package br.univali.simulacao.principal;
 
+import br.univali.simulacao.modelo.Conversor;
 import br.univali.simulacao.modelo.Relatorio;
 import br.univali.simulacao.modelo.Tupla;
 import br.univali.simulacao.modelo.distribuicoes.Distribuicao;
@@ -86,6 +87,7 @@ public class Tela extends javax.swing.JFrame {
         spinner_tempoSimulacao = new javax.swing.JSpinner();
         label_simulacao = new javax.swing.JLabel();
         label_termino = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         label_media.setText("μ:");
 
@@ -379,6 +381,10 @@ public class Tela extends javax.swing.JFrame {
         label_termino.setForeground(new java.awt.Color(51, 153, 0));
         label_termino.setPreferredSize(new java.awt.Dimension(48, 14));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel1.setText("* em segundos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -412,9 +418,11 @@ public class Tela extends javax.swing.JFrame {
                                     .addComponent(comboBox_TS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(button_simulação)
-                                    .addComponent(label_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(label_termino, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(button_simulação)))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -442,7 +450,9 @@ public class Tela extends javax.swing.JFrame {
                 .addComponent(label_tempoSimulacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(spinner_tempoSimulacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_simulação)
                 .addGap(4, 4, 4)
                 .addComponent(label_simulacao)
@@ -459,6 +469,13 @@ public class Tela extends javax.swing.JFrame {
 
     private void button_simulaçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_simulaçãoActionPerformed
         label_termino.setText("");
+        comboBox_TEC.setEnabled(false);
+        comboBox_TS.setEnabled(false);
+        comboBox_tempoRelatorio.setEnabled(false);
+        comboBox_tempoSistema.setEnabled(false);
+        button_simulação.setEnabled(false);
+        spinner_tempoSimulacao.setEnabled(false);
+
         montaTabela((float) spinner_tempoSimulacao.getValue());
         Thread thread = new Thread(new Runnable() {
 
@@ -586,6 +603,7 @@ public class Tela extends javax.swing.JFrame {
     private void exibeTela() throws InterruptedException {
         int tempoSimulacao = 0;
         int i = 0;
+        Conversor conversor = new Conversor();
 
         entidades = new ArrayList<>();
         entidadesFila = new LinkedHashSet<>();
@@ -600,7 +618,8 @@ public class Tela extends javax.swing.JFrame {
                     while (tempoSimulacao < tupla.getTc_i()) {
                         Thread.currentThread().sleep(350);
                         tempoSimulacao++;
-                        label_tempo.setText("Tempo: " + tempoSimulacao);
+                        label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                                tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                         removeEntidade(tempoSimulacao);
                     }
 
@@ -609,7 +628,8 @@ public class Tela extends javax.swing.JFrame {
                     while (tempoSimulacao < tupla.getTs_inicio()) {
                         Thread.currentThread().sleep(350);
                         tempoSimulacao++;
-                        label_tempo.setText("Tempo: " + tempoSimulacao);
+                        label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                                tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                         removeEntidade(tempoSimulacao);
                     }
 
@@ -634,7 +654,7 @@ public class Tela extends javax.swing.JFrame {
                             }
                         }
                     }
-                    
+
                     exibeFila();
 
                     Thread.currentThread().sleep(350);
@@ -643,14 +663,16 @@ public class Tela extends javax.swing.JFrame {
                     separator_saida.setForeground(Color.DARK_GRAY);
 
                     tempoSimulacao++;
-                    label_tempo.setText("Tempo: " + tempoSimulacao);
+                    label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                            tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                     i++;
 
                 }
                 Thread.currentThread().sleep(350);
                 removeEntidade(tempoSimulacao);
                 tempoSimulacao++;
-                label_tempo.setText("Tempo: " + tempoSimulacao);
+                label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                        tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
             }
             label_pid.setText("");
             label_chegada.setText("");
@@ -661,8 +683,15 @@ public class Tela extends javax.swing.JFrame {
                 removeEntidade(tempoSimulacao);
                 Thread.currentThread().sleep(500);
                 tempoSimulacao++;
-                label_tempo.setText("Tempo: " + tempoSimulacao);
+                label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                        tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
             }
+            comboBox_TEC.setEnabled(true);
+            comboBox_TS.setEnabled(true);
+            comboBox_tempoRelatorio.setEnabled(true);
+            comboBox_tempoSistema.setEnabled(true);
+            button_simulação.setEnabled(true);
+            spinner_tempoSimulacao.setEnabled(true);
             label_termino.setText("Terminou");
             Relatorio relatorio = new Relatorio(tuplas);
         }
@@ -696,6 +725,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JComboBox comboBox_tempoRelatorio;
     private javax.swing.JComboBox comboBox_tempoSistema;
     private javax.swing.JDesktopPane desktopPane_simulacao;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_TEC;
     private javax.swing.JLabel label_TS;

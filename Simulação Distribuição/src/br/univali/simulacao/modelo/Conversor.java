@@ -2,7 +2,7 @@ package br.univali.simulacao.modelo;
 
 public class Conversor {
 
-    public static double Conversor(int valor, String unidade) {
+    public int ConverteValor(int valor, String unidade) {
         switch (unidade) {
             case "Milisegundo":
                 return valor*1000;
