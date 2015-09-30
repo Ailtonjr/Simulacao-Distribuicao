@@ -1,13 +1,29 @@
 Relatorio da Simulacao
-Maior tempo para ser processado: 4	15.0
-Menor tempo para ser processado: 8	5.0
-Maior tempo em fila: 11	51.0
-Menor tempo em fila: 1	8.0
-Maior tempo filas + processos: 10	57.0
-Menor tempo filas + processos: 0	13.0
+Maior tempo para ser processado: 8	14.0
+Menor tempo para ser processado: 0	5.0
+Maior tempo em fila: 11	46.0
+Menor tempo em fila: 2	9.0
+Maior tempo filas + processos: 11	59.0
+Menor tempo filas + processos: 0	5.0
 Processo que gerou mais filas: PROCESSO 1
 Processo que gerou menos filas: PROCESSO 1
-Tempo medio de permanencia das entidades em fila: 0.027918781725888325
-Tempo medio de atendimendo das entidades: 63.666666666666664
+Tempo medio de permanencia das entidades em fila: 28.8
+Tempo medio de atendimendo das entidades: 52.083333333333336
 Quantidade de entidades que entram no PROCESSO 1: 12
 Quantidade de entidades que saem do PROCESSO 1: 12
+
+
+
+ ID 	 TEC 	 TC-I 	 TS-Inicio 	 TS 	 TS-Fim 	 T-Fila 
+0	0.0	0.0	0.0		5.0	5.0		0.0
+1	6.0	6.0	6.0		12.0	18.0		0.0
+2	3.0	9.0	18.0		10.0	28.0		9.0
+3	4.0	13.0	28.0		12.0	40.0		15.0
+4	7.0	20.0	40.0		9.0	49.0		20.0
+5	6.0	26.0	49.0		10.0	59.0		23.0
+6	3.0	29.0	59.0		7.0	66.0		30.0
+7	5.0	34.0	66.0		5.0	71.0		32.0
+8	7.0	41.0	71.0		14.0	85.0		30.0
+9	6.0	47.0	85.0		14.0	99.0		38.0
+10	7.0	54.0	99.0		5.0	104.0		45.0
+11	4.0	58.0	104.0		13.0	117.0		46.0

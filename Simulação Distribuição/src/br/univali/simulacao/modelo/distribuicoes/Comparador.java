@@ -27,7 +27,6 @@ public class Comparador {
             }
             aux += elemento.getPercentual();
         }
-        System.err.println("Deu 0 e Chamou de novo");
         return comparaPercentagem(lista);                                           //Teste para nao retornar 0 quando o rand der um valor fora dos intervalos
     }
     

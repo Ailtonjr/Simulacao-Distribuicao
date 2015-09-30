@@ -33,7 +33,6 @@ public class Relatorio {
             double auxMenorFila = VALOR_MAX;
             double auxMaiorSistemaFilas = 0;
             double auxMenorSistemaFilas = VALOR_MAX;
-            System.out.println(auxMenorProcessado);
             
             for (Tupla tupla : tabela) {
                 // Mais demorou para ser processado
@@ -123,6 +122,4 @@ public class Relatorio {
             ex.printStackTrace();
         }
     }
-    
-    
 }
