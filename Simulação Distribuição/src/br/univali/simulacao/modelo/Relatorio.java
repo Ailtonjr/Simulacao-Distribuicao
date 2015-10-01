@@ -23,9 +23,10 @@ public class Relatorio {
     private double divisorPermanencia = 0;
     private double dividendoAtendimento = 0;
     private double divisorAtendimento = 0;
+    private Conversor conversor = new Conversor();
     
-    public Relatorio(List<Tupla> tabela) {
-        
+    public Relatorio(List<Tupla> tabela, String unidade) {
+        System.out.println("Tempo unidade " + unidade);
         try {
             double auxMaiorProcessado = 0;
             double auxMenorProcessado = VALOR_MAX;
@@ -38,34 +39,34 @@ public class Relatorio {
                 // Mais demorou para ser processado
                 if (tupla.getTs() > auxMaiorProcessado) {
                     auxMaiorProcessado = tupla.getTs();
-                    maiorTempoProcessado = tupla.getId()+ "\t" + tupla.getTs();
+                    maiorTempoProcessado = tupla.getId()+ "\t" + conversor.converteValor(tupla.getTs(), unidade);
                 }
                 // Menos demorou para ser processado
                 if (tupla.getTs() < auxMenorProcessado) {
                     auxMenorProcessado = tupla.getTs();
-                    menorTempoProcessado = tupla.getId()+ "\t" + tupla.getTs();
+                    menorTempoProcessado = tupla.getId()+ "\t" + conversor.converteValor(tupla.getTs(), unidade);
                 }
                 
                 // Maior tempo em fila
                 if (tupla.getT_fila() > auxMaiorFila) {
                     auxMaiorFila = tupla.getT_fila();
-                    maiorTempoFila = tupla.getId()+ "\t" + tupla.getT_fila();
+                    maiorTempoFila = tupla.getId()+ "\t" + conversor.converteValor(tupla.getT_fila(), unidade);
                 }
                 // Menor tempo em fila  
                 if (tupla.getT_fila() < auxMenorFila && tupla.getT_fila() > 0) {
                     auxMenorFila = tupla.getT_fila();
-                    menorTempoFila = tupla.getId() + "\t" + tupla.getT_fila();
+                    menorTempoFila = tupla.getId() + "\t" + conversor.converteValor(tupla.getT_fila(), unidade);
                 }
                 
                 // Maior tempo Sistema filas
                 if ((tupla.getTs() + tupla.getT_fila()) > auxMaiorSistemaFilas) {
                     auxMaiorSistemaFilas = tupla.getTs() + tupla.getT_fila();
-                    maiorSistemaFilas = tupla.getId() + "\t" + (tupla.getTs() + tupla.getT_fila());
+                    maiorSistemaFilas = tupla.getId() + "\t" + conversor.converteValor((tupla.getTs() + tupla.getT_fila()), unidade);
                 }
                 // Menor tempo Sistema filas
                 if ((tupla.getTs() + tupla.getT_fila()) < auxMenorSistemaFilas) {
                     auxMenorSistemaFilas = tupla.getTs() + tupla.getT_fila();
-                    menorSistemaFilas = tupla.getId() + "\t" + (tupla.getTs() + tupla.getT_fila());
+                    menorSistemaFilas = tupla.getId() + "\t" + conversor.converteValor((tupla.getTs() + tupla.getT_fila()), unidade);
                 }
                 
                 // Reservado para processos
@@ -83,7 +84,7 @@ public class Relatorio {
             
             String permanencia;
             if (dividendoPermanencia == 0)  permanencia = "0 nao houveram filas.";
-            else    permanencia = "" + dividendoPermanencia/divisorPermanencia;
+            else    permanencia = "" + conversor.converteValor(dividendoPermanencia/divisorPermanencia, unidade);
             
             dados.add("Maior tempo para ser processado: " + maiorTempoProcessado);
             dados.add("Menor tempo para ser processado: " + menorTempoProcessado);
@@ -94,7 +95,7 @@ public class Relatorio {
             dados.add("Processo que gerou mais filas: " + "PROCESSO 1");        // M3
             dados.add("Processo que gerou menos filas: " + "PROCESSO 1");       // M3
             dados.add("Tempo medio de permanencia das entidades em fila: " + permanencia);    // M3
-            dados.add("Tempo medio de atendimendo das entidades: " + dividendoAtendimento/divisorAtendimento);
+            dados.add("Tempo medio de atendimendo das entidades: " + conversor.converteValor(dividendoAtendimento/divisorAtendimento, unidade));
             dados.add("Quantidade de entidades que entram no PROCESSO 1: " + tabela.size());    // M3
             dados.add("Quantidade de entidades que saem do PROCESSO 1: " + tabela.size());
             

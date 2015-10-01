@@ -618,7 +618,7 @@ public class Tela extends javax.swing.JFrame {
                     while (tempoSimulacao < tupla.getTc_i()) {
                         Thread.currentThread().sleep(350);
                         tempoSimulacao++;
-                        label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                        label_tempo.setText("Tempo: " + conversor.converteValor(
                                 tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                         removeEntidade(tempoSimulacao);
                     }
@@ -628,7 +628,7 @@ public class Tela extends javax.swing.JFrame {
                     while (tempoSimulacao < tupla.getTs_inicio()) {
                         Thread.currentThread().sleep(350);
                         tempoSimulacao++;
-                        label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                        label_tempo.setText("Tempo: " + conversor.converteValor(
                                 tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                         removeEntidade(tempoSimulacao);
                     }
@@ -663,7 +663,7 @@ public class Tela extends javax.swing.JFrame {
                     separator_saida.setForeground(Color.DARK_GRAY);
 
                     tempoSimulacao++;
-                    label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                    label_tempo.setText("Tempo: " + conversor.converteValor(
                             tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
                     i++;
 
@@ -671,7 +671,7 @@ public class Tela extends javax.swing.JFrame {
                 Thread.currentThread().sleep(350);
                 removeEntidade(tempoSimulacao);
                 tempoSimulacao++;
-                label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                label_tempo.setText("Tempo: " + conversor.converteValor(
                         tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
             }
             label_pid.setText("");
@@ -683,7 +683,7 @@ public class Tela extends javax.swing.JFrame {
                 removeEntidade(tempoSimulacao);
                 Thread.currentThread().sleep(500);
                 tempoSimulacao++;
-                label_tempo.setText("Tempo: " + conversor.ConverteValor(
+                label_tempo.setText("Tempo: " + conversor.converteValor(
                         tempoSimulacao, comboBox_tempoSistema.getSelectedItem().toString()));
             }
             comboBox_TEC.setEnabled(true);
@@ -693,7 +693,8 @@ public class Tela extends javax.swing.JFrame {
             button_simulação.setEnabled(true);
             spinner_tempoSimulacao.setEnabled(true);
             label_termino.setText("Terminou");
-            Relatorio relatorio = new Relatorio(tuplas);
+            
+            Relatorio relatorio = new Relatorio(tuplas, String.valueOf(comboBox_tempoRelatorio.getSelectedItem()));
         }
     }
 
